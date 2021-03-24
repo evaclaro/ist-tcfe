@@ -6,47 +6,31 @@
 * forces current values to be saved
 .options savecurrents
 
+* resistors
+R1 0 N1 1.03431507833k
+R2 N2 0 2.02853090731k
+R3 0 N3 3.1462050633k
+R4 N4 N3 4.03438547455k
+R5 N3 N5 3.12170042214k
+R6 N4 N6 2.07116379646k
+R7 N8 N7 1.01597753093k
+
 * independent voltage source
-VA N1 N4 5.156959346
+Va N1 N4 DC 5.156959346
 
 * independent current source
-ID N7 N5 1.01455683569m
+Id N7 N5 DC 1.01455683569m
 
 * linearly dependent sources
 * voltage-controlled current source
-GB N5 N2 N3 N0 7.1497941196
+Gb N5 N2 0 N3 7.1497941196m
 
 * current-controlled voltage source
-V0 N0 N7 DC 0
-HC N0 N7 V0 9.12593642585
+Vx N6 N8 DC 0
+Hc N3 N7 Vx 8.12593642585k
 
-* resistors
-*mesh A
-R1 N1 N3 1.03431507833k
-R3 N3 N0 3.1462050633k
-R4 N0 N4 4.03438547455k
-
-*mesh B
-R2 N2 N3 2.02853090731k
-R5 N0 N5 3.12170042214k
-
-*mesh C
-R6 N4 N6 4.0343857455k
-R7 N6 N7 1.01587753093k
-
-*mesh D
 
 .control
-
-*makes plots in color
-set hcopypscolor=0
-set color0=white
-set color1=black
-set color2=red
-set color3=blue
-set color4=violet
-set color5=rgb:3/8/0
-set color6=rgb:4/0/0
 
 op
 
@@ -54,11 +38,16 @@ echo "********************************************"
 echo  "Operating point"
 echo "********************************************"
 
+
 echo  "op_TAB"
+print @Vx[i]
+print @Hc[i]
+print @Va[i]
 print all
 echo  "op_END"
 
 quit
+
 .endc
 
 .end

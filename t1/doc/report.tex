@@ -14,7 +14,9 @@
 \usepackage[skip=0.5\baselineskip]{caption}
 \hyphenation{GTKWave}
 \usepackage{listings}
+\usepackage{amsmath}
 \usepackage[all]{nowidow}
+\usepackage{titlesec}
 
 %blind text
 \usepackage{lipsum}
@@ -56,7 +58,7 @@
 %            menucolor=red,    % color for Acrobat menu items
             menucolor=black,  % color for Acrobat menu items
 %            pagecolor=red,    % color for links to other pages
-            pagecolor=black,  % color for links to other pages
+%            pagecolor=black,  % color for links to other pages
 %            urlcolor=cyan,    % color for linked URLs
             urlcolor=black,   % color for linked URLs
 	          bookmarks=true,         % create PDF bookmarks
@@ -66,12 +68,17 @@
             pdfauthor={Andre C. Marta},
 %            pdfsubject={Thesis Title},
 %            pdfkeywords={Thesis Keywords},
-            pdfstartview=FitV,
-            pdfdisplaydoctitle=true}
-
+            pdfstartview=FitV}
+\newcommand{\sectionbreak}{\clearpage}
 \usepackage[numbers,sort&compress]{natbib} % <<<<< References in numbered list [1],[2],...
 \usepackage{subcaption} 
 \usepackage{mdframed}
+\usepackage{environ}
+
+\NewEnviron{centrar}{\refstepcounter{equation}
+\begin{gather*}\BODY\\(\theequation)\end{gather*}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Begin Document                                                   %
