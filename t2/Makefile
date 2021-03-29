@@ -4,7 +4,10 @@
 # type "make clean" to delete all generated files
 # ------------------------------------------------------------
 
+
+
 all:
+	python t2_datagen.py 
 	make -C mat
 	make -C sim
 	make -C doc
