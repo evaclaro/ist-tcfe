@@ -12,6 +12,19 @@ The Table~\ref{tab:op} shows the simulated operating point results for the circu
 \label{fig:malhaC}
 \end{figure}
 
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/sim3.pdf}
+\caption{C Mesh with an adicional voltage source} %mudar legendaaaaaaa
+\label{fig:malhaC}
+\end{figure}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../sim/sim4.pdf}
+\caption{C Mesh with an adicional voltage source} %mudar legendaaaaaaa
+\label{fig:malhaC}
+\end{figure}
+
+
 In this simulation is important to explain the creation of an auxiliary voltage $V_b$ (with a voltage equal to $0V$) that was put between N6 and R7 as shown in Figure~\ref{fig:malhaC}. Consequently, this led to the appearance of a node that we designated by N8 that has the same voltage as N6.
 
 This was necessary because of Ngspice software requirements.
@@ -23,7 +36,20 @@ By observing the Table~\ref{tab:op},Table~\ref{tab:nodal} and Table~\ref{tab:mes
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/op_tab}
+    \input{../sim/op1_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:op}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op2_tab}
   \end{tabular}
   \caption{Operating point. A variable preceded by @ is of type {\em current}
     and expressed in Ampere; other variables are of type {\it voltage} and expressed in

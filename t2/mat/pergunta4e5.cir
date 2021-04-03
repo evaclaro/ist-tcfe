@@ -1,0 +1,29 @@
+.OP
+
+* resistors
+R1 N2 N1 1.03431507833k
+R2 N3 N2 2.02853090731k
+R3 N2 N5 3.1462050633k
+R4 0 N5 4.03438547455k
+R5 N5 N6 3.12170042214k
+R6 0 N7 2.07116379646k
+R7 N9 N8 1.01597753093k
+
+* independent voltage source
+Vs N1 0 0.0 ac 1.0 sin(0 .1 1000)
+
+* capacitor
+C N6 N8 1.01455683569u
+
+* voltage-controlled current source
+Gb N6 N3 N2 N5 7.1497941196m
+
+* current-controlled voltage source
+Hd N5 N8 Vaux 8.12593642585k
+
+* auxiliar voltage source
+Vaux N7 N9 DC 0
+
+.IC v(N6)=8.764397 v(N8)=1.776357e-15
+
+.END

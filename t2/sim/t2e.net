@@ -1,0 +1,42 @@
+*
+* NGSPICE simulation script
+* Lab2 circuit
+* Pergunta 5
+*
+
+* forces current values to be saved
+.options savecurrents
+
+.include ../mat/pergunta4e5.cir
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+echo "****************"
+echo  "FREQUENCY ANALISIS"-QUESTION 5
+echo "****************"
+ac dec 100 0.1 100MEG
+
+hardcopy sim5db.ps db(v(N1)) db(v(N6))
+echo sim5db_FIG
+
+hardcopy sim5ph.ps ph(v(N1))*180/pi ph(v(N6))*180/pi
+*echo sim5ph_FIG
+
+
+quit
+
+.endc
+
+.end

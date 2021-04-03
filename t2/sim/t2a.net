@@ -1,0 +1,32 @@
+*
+* NGSPICE simulation script
+* Lab2 circuit
+* Pergunta 1
+*
+
+* forces current values to be saved
+.options savecurrents
+
+.include ../mat/pergunta1.cir
+
+.control
+
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+echo  "op1_TAB"
+print N6-N8
+print @Vaux[i]
+print @Hd[i]
+print @Vs[i]
+print all
+echo  "op1_END"
+
+quit
+
+.endc
+
+.end
