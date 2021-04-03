@@ -7,7 +7,7 @@
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/pergunta2.cir
+.include ../sim/pergunta2.txt
 
 .control
 

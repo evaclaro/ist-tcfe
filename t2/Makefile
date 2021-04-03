@@ -6,13 +6,15 @@
 
 
 
-all:
-	python t2_datagen.py 
+all:	python
 	make -C mat
 	make -C sim
 	make -C doc
 	cp doc/report.pdf .
 
+python:
+	python t2_datagen.py > ../t2/mat/data.txt
+	
 clean:
 	make -C mat clean
 	make -C sim clean

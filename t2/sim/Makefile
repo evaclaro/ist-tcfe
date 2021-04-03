@@ -50,6 +50,6 @@ ngspice5.log: ../sim/t2e.net
 	ngspice -b $< -o $@
 
 clean:
-	@rm -f *.log *.tex *.pdf *.ps *~
+	@rm -f *.log *.txt *.pdf *.tex *.ps *~
 
 .PHONY: all clean

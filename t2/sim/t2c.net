@@ -6,7 +6,11 @@
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/pergunta3.cir
+.op
+.include ../sim/pergunta3.txt
+.IC v(N6)=8.764397 v(N8)=1.776357e-15
+.end
+
 
 .control
 

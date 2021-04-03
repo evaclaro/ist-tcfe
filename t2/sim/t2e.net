@@ -7,7 +7,7 @@
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/pergunta4e5.cir
+.include ../sim/pergunta4e5.txt
 
 .control
 
@@ -32,7 +32,7 @@ hardcopy sim5db.ps db(v(N1)) db(v(N6))
 echo sim5db_FIG
 
 hardcopy sim5ph.ps ph(v(N1))*180/pi ph(v(N6))*180/pi
-*echo sim5ph_FIG
+echo sim5ph_FIG
 
 
 quit

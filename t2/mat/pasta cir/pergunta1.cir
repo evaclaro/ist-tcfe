@@ -13,7 +13,7 @@ R7 N9 N8 1.01597753093k
 Vs N1 0 5.156959346
 
 * capacitor
-C1 N6 N8 1.01455683569uF
+C N6 N8 1.01455683569uF
 
 * voltage-controlled current source
 Gb N6 N3 N2 N5 7.1497941196m
