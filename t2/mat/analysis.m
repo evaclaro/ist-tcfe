@@ -226,6 +226,61 @@ close(hf2);
 
 
 #------------------------------------------------------------Alínea 6--------------------------------------------------------------------
+#SixthPoint
+printf ("\n\nPARTE 6\n");
+phasor_vs = 1*power(e,-i*pi/2);
+f6 = -1:1e-03:6; 
+W = 2*pi*power(10,f6);
+Y_c = i .* W .* C;
+Z_c = 1. ./Y_c;
+
+A_6 = [-Kb - G2, G2, Kb, 0;         
+     G3-Kb,  0, Kb-G3-G4, -G6;
+     Kb-G1-G3, 0, G3-Kb, 0;
+     0, 0, 1, Kd * G6- R7 * G6-1]; 
+B_6 = [0; 0; -phasor_vs * G1; 0];
+
+V_6=A_6\B_6; 
+ 
+v8 = R7*(G1+G6)*V_6(4) + 0*Z_c;
+v66 = ((G5+Kb)*V_6(3)-Kb*V_6(1)+ (v8 ./ Z_c)) ./ (G5 + 1. ./ Z_c);
+vc6 = v66 - v8;
+vs6 = power(e,i*pi/2) + 0*W;
+
+phase_v66 = 180/pi*(angle(v66)); 
+
+for  var=1:length(phase_v66)
+	if(phase_v66(var)<= -90) 
+		phase_v66(var) = phase_v66(var) + 180;
+	elseif (phase_v66(var)>= 90) 
+		phase_v66(var) = phase_v66(var) - 180;
+endif
+endfor
+
+
+hg = figure ();
+plot (f6, phase_v66, "b");
+hold on;
+plot (f6, 180/pi*(angle(vc6) + pi), "g");
+hold on;
+plot (f6, (180*angle(vs6))/pi, "m");
+
+legend("v_6","v_c","v_s");
+xlabel ("log_{10}(f) [Hz]");
+ylabel ("Phase v_c(f), v_6(f), v_s(f) [degrees]");
+print (hg, "../mat/Phase(degrees).eps");
+
+hj = figure ();
+plot (f6, 20*log10(abs(v66)), "b");
+hold on;
+plot (f6, 20*log10(abs(vs6)), "g");
+hold on;
+plot (f6, 20*log10(abs(vc6)), "m");
+
+legend("v_6","v_s","v_c");
+xlabel ("log_{10}(f) [Hz]");
+ylabel ("Magnitude v_c, v_6, v_s [dB]");
+print (hj, "../mat/MagnitudedB.eps");
 
 
 
@@ -234,17 +289,17 @@ close(hf2);
 #Question 1 
 file = fopen('pergunta1.txt', 'w');
 
-fprintf (file, "R1 N2 N1 %.11f\n", R1);
-fprintf (file, "R2 N3 N2 %.11f\n", R2);
-fprintf (file, "R3 N2 N5 %.11f\n", R3);
-fprintf (file, "R4 0 N5 %.11f\n", R4);
-fprintf (file, "R5 N5 N6 %.11f\n", R5);
-fprintf (file, "R6 0 N7 %.11f\n", R6);
-fprintf (file, "R7 N9 N8 %.11f\n", R7);
-fprintf (file, "Vs N1 0  DC %.11f\n", Vs);
-fprintf (file, "C N6 N8 %.11f\n", C);
-fprintf (file, "Gb N6 N3 N2 N5 %.11f\n", Kb);
-fprintf (file, "Hd N5 N8 Vaux %.11f\n", Kd);
+fprintf (file, "R1 N2 N1 %.11e\n", R1);
+fprintf (file, "R2 N3 N2 %.11e\n", R2);
+fprintf (file, "R3 N2 N5 %.11e\n", R3);
+fprintf (file, "R4 0 N5 %.11e\n", R4);
+fprintf (file, "R5 N5 N6 %.11e\n", R5);
+fprintf (file, "R6 0 N7 %.11e\n", R6);
+fprintf (file, "R7 N9 N8 %.11e\n", R7);
+fprintf (file, "Vs N1 0  DC %.11e\n", Vs);
+fprintf (file, "C N6 N8 %.11e\n", C);
+fprintf (file, "Gb N6 N3 N2 N5 %.11e\n", Kb);
+fprintf (file, "Hd N5 N8 Vaux %.11e\n", Kd);
 fprintf (file, "Vaux N7 N9 DC 0\n");
 
 fclose(file);
@@ -255,17 +310,17 @@ movefile('pergunta1.txt', '../sim');
 #Question 2
 file = fopen('pergunta2.txt', 'w');
 
-fprintf (file, "R1 N2 N1 %.11f\n", R1);
-fprintf (file, "R2 N3 N2 %.11f\n", R2);
-fprintf (file, "R3 N2 N5 %.11f\n", R3);
-fprintf (file, "R4 0 N5 %.11f\n", R4);
-fprintf (file, "R5 N5 N6 %.11f\n", R5);
-fprintf (file, "R6 0 N7 %.11f\n", R6);
-fprintf (file, "R7 N9 N8 %.11f\n", R7);
+fprintf (file, "R1 N2 N1 %.11e\n", R1);
+fprintf (file, "R2 N3 N2 %.11e\n", R2);
+fprintf (file, "R3 N2 N5 %.11e\n", R3);
+fprintf (file, "R4 0 N5 %.11e\n", R4);
+fprintf (file, "R5 N5 N6 %.11e\n", R5);
+fprintf (file, "R6 0 N7 %.11e\n", R6);
+fprintf (file, "R7 N9 N8 %.11e\n", R7);
 fprintf (file, "Vs N1 0 DC 0\n");
-fprintf (file, "Vx N6 N8 %.11f\n", Vx);
-fprintf (file, "Gb N6 N3 N2 N5 %.11f\n", Kb);
-fprintf (file, "Hd N5 N8 Vaux %.11f\n", Kd);
+fprintf (file, "Vx N6 N8 %.11e\n", Vx);
+fprintf (file, "Gb N6 N3 N2 N5 %.11e\n", Kb);
+fprintf (file, "Hd N5 N8 Vaux %.11e\n", Kd);
 fprintf (file, "Vaux N7 N9 DC 0\n");
 
 fclose(file);
@@ -276,19 +331,19 @@ movefile('pergunta2.txt', '../sim');
 #Question 3
 file = fopen('pergunta3.txt', 'w');
 
-fprintf (file, "R1 N2 N1 %.11f\n", R1);
-fprintf (file, "R2 N3 N2 %.11f\n", R2);
-fprintf (file, "R3 N2 N5 %.11f\n", R3);
-fprintf (file, "R4 0 N5 %.11f\n", R4);
-fprintf (file, "R5 N5 N6 %.11f\n", R5);
-fprintf (file, "R6 0 N7 %.11f\n", R6);
-fprintf (file, "R7 N9 N8 %.11f\n", R7);
+fprintf (file, "R1 N2 N1 %.11e\n", R1);
+fprintf (file, "R2 N3 N2 %.11e\n", R2);
+fprintf (file, "R3 N2 N5 %.11e\n", R3);
+fprintf (file, "R4 0 N5 %.11e\n", R4);
+fprintf (file, "R5 N5 N6 %.11e\n", R5);
+fprintf (file, "R6 0 N7 %.11e\n", R6);
+fprintf (file, "R7 N9 N8 %.11e\n", R7);
 fprintf (file, "Vs N1 0 0\n");
-fprintf (file, "C N6 N8 %.11f\n", C);
-fprintf (file, "Gb N6 N3 N2 N5 %.11f\n", Kb);
-fprintf (file, "Hd N5 N8 Vaux %.11f\n", Kd);
+fprintf (file, "C N6 N8 %.11e\n", C);
+fprintf (file, "Gb N6 N3 N2 N5 %.11e\n", Kb);
+fprintf (file, "Hd N5 N8 Vaux %.11e\n", Kd);
 fprintf (file, "Vaux N7 N9 DC 0\n");
-fprintf (file, ".IC v(N6)=%f v(N8)=%f\n", x1, x2);%atencaoooooooooooooooooooo
+fprintf (file, ".IC v(N6)=%e v(N8)=%e\n", x1, x2);%atencaoooooooooooooooooooo
 
 fclose(file);
 
@@ -298,19 +353,19 @@ movefile('pergunta3.txt', '../sim');
 #Question 4 e 5
 file = fopen('pergunta4e5.txt', 'w');
 
-fprintf (file, "R1 N2 N1 %.11f\n", R1);
-fprintf (file, "R2 N3 N2 %.11f\n", R2);
-fprintf (file, "R3 N2 N5 %.11f\n", R3);
-fprintf (file, "R4 0 N5 %.11f\n", R4);
-fprintf (file, "R5 N5 N6 %.11f\n", R5);
-fprintf (file, "R6 0 N7 %.11f\n", R6);
-fprintf (file, "R7 N9 N8 %.11f\n", R7);
+fprintf (file, "R1 N2 N1 %.11e\n", R1);
+fprintf (file, "R2 N3 N2 %.11e\n", R2);
+fprintf (file, "R3 N2 N5 %.11e\n", R3);
+fprintf (file, "R4 0 N5 %.11e\n", R4);
+fprintf (file, "R5 N5 N6 %.11e\n", R5);
+fprintf (file, "R6 0 N7 %.11e\n", R6);
+fprintf (file, "R7 N9 N8 %.11e\n", R7);
 fprintf (file, "Vs N1 0 0.0 ac 1.0 sin(0 1 1000)\n");
-fprintf (file, "C N6 N8 %.11f\n", C);
-fprintf (file, "Gb N6 N3 N2 N5 %.11f\n", Kb);
-fprintf (file, "Hd N5 N8 Vaux %.11f\n", Kd);
+fprintf (file, "C N6 N8 %.11e\n", C);
+fprintf (file, "Gb N6 N3 N2 N5 %.11e\n", Kb);
+fprintf (file, "Hd N5 N8 Vaux %.11e\n", Kd);
 fprintf (file, "Vaux N7 N9 DC 0\n");
-fprintf (file, ".IC v(N6)=%f v(N8)=%f\n", x1, x2);%atencaoooo
+fprintf (file, ".IC v(N6)=%e v(N8)=%e\n", x1, x2);%atencaoooo
 
 fclose(file);
 
