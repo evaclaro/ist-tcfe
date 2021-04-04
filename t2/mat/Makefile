@@ -5,6 +5,8 @@ all:	octave.log
 	
 octave.log: ngspice.m
 	octave $< > $@
+	rcLab2.m
+	octave $< > $@
 
 clean:
 	@rm -f octave.log octave-workspace *.tex *.txt *.eps *~
