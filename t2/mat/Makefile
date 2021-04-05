@@ -6,7 +6,8 @@ all:	octave.log
 octave.log: analysis.m
 	octave $< > $@
 
+
 clean:
-	@rm -f octave.log octave-workspace *.tex *.txt *.eps *~
+	@rm -f octave.log octave-workspace *.tex *.txt *.eps *.pdf *~
 
 .PHONY: clean

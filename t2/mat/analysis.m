@@ -51,28 +51,28 @@ V_1 = A_1\B_1;
 
 #Atribuitions of the values to the variables
 printf ("octave1v_TAB\n");
-V0_i = V_1(1,1)
-V1_i = V_1(2,1)
-V2_i = V_1(3,1)
-V3_i = V_1(4,1)
-V5_i = V_1(5,1)
-V6_i = V_1(6,1)
-V7_i = V_1(7,1)
-V8_i = V_1(8,1)
+V0i = V_1(1,1)
+V1i = V_1(2,1)
+V2i = V_1(3,1)
+V3i = V_1(4,1)
+V5i = V_1(5,1)
+V6i = V_1(6,1)
+V7i = V_1(7,1)
+V8i = V_1(8,1)
 printf ("octave1v_END\n");
 
 #Calculation of the current values of Ib, in each resistor and in the voltage sources
 printf ("octave1i_TAB\n")
-Ib = Kb*(V2_i - V5_i)
-IR1_i = G1*(V2_i-V1_i)
-IR2_i = G2*(V3_i-V2_i)
-IR3_i = G3*(V2_i-V5_i)
-IR4_i = G4*(-V5_i)
-IR5_i = G5*(V5_i-V6_i)
-IR6_i = G6*(-V7_i)
-IR7_i = G7*(V7_i-V8_i);
-Ivs_i = IR1_i
-IVd_i = IR3_i+IR4_i-IR5_i
+Ib = Kb*(V2i - V5i)
+IR1i = G1*(V2i-V1i)
+IR2i = G2*(V3i-V2i)
+IR3i = G3*(V2i-V5i)
+IR4i = G4*(-V5i)
+IR5i = G5*(V5i-V6i)
+IR6i = G6*(-V7i)
+IR7i = G7*(V7i-V8i);
+Ivsi = IR1i
+IVdi = IR3i+IR4i-IR5i
 printf ("octave1i_END\n");
 
 
@@ -81,7 +81,7 @@ printf ("octave1i_END\n");
 #SecondPoint
 printf ("\n\nPARTE 2\n");
 #Calculation of Vx
-Vx = V6_i - V8_i;
+Vx = V6i - V8i;
 
 #Matrix of the nodal method and additional equations for t=0
 A_2 = [1,0,0,0,0,0,0,0;...
@@ -101,38 +101,38 @@ V_2 = A_2\B_2;
 
 #Atribuitions of the values to the variables
 printf ("octave2v_TAB\n");
-V0_t0 = V_2(1,1)
-V1_t0 = V_2(2,1)
-V2_t0 = V_2(3,1)
-V3_t0 = V_2(4,1)
-V5_t0 = V_2(5,1)
-V6_t0 = V_2(6,1)
-V7_t0 = V_2(7,1)
-V8_t0 = V_2(8,1)
+V0t0 = V_2(1,1)
+V1t0 = V_2(2,1)
+V2t0 = V_2(3,1)
+V3t0 = V_2(4,1)
+V5t0 = V_2(5,1)
+V6t0 = V_2(6,1)
+V7t0 = V_2(7,1)
+V8t0 = V_2(8,1)
 printf ("octave2v_END\n");
 
-x1 = V6_t0;
-x2 = V8_t0;
+x1 = V6t0;
+x2 = V8t0;
 
 #Calculation of the current values of Ib, in each resistor and in the voltage sources
 printf ("octave2i_TAB\n");
-Ib = Kb*(V2_t0 - V5_t0)
-IR1_t0 = G1*V2_t0
-IR2_t0 = G2*(V3_t0-V2_t0)
-IR3_t0 = G3*(V2_t0-V5_t0)
-IR4_t0 = G4*(-V5_t0)
-IR5_t0 = G5*(V5_t0-V6_t0)
-IR6_t0 = G6*(-V7_t0)
-IR7_t0 = G7*(V7_t0-V8_t0)
-Ivs_t0 = IR1_t0
-IVd_t0 = IR3_t0+IR4_t0-IR5_t0
+Ib = Kb*(V2t0 - V5t0)
+IR1t0 = G1*V2t0
+IR2t0 = G2*(V3t0-V2t0)
+IR3t0 = G3*(V2t0-V5t0)
+IR4t0 = G4*(-V5t0)
+IR5t0 = G5*(V5t0-V6t0)
+IR6t0 = G6*(-V7t0)
+IR7t0 = G7*(V7t0-V8t0)
+Ivst0 = IR1t0
+IVdt0 = IR3t0+IR4t0-IR5t0
 printf ("octave2i_END\n");
 
 #Calculation of Ix, Req, and tau values
 printf ("octave2valores_TAB\n");
-Ix_t0 = -Kb*(V2_t0 - V5_t0) - G5*(V6_t0-V5_t0)
-Req_t0 = abs(Vx/Ix_t0)
-tau = Req_t0*C
+Ixt0 = -Kb*(V2t0 - V5t0) - G5*(V6t0-V5t0)
+Reqt0 = abs(Vx/Ixt0)
+tau = Reqt0*C
 printf ("octave2valores_END\n");
 
 
@@ -143,16 +143,16 @@ printf ("\n\nPARTE 3\n");
 #Defining the time interval and variables
 tempo = 0:(20e-3)/1000:20e-3;
 
-V6_Nt = (V6_t0)*e.^(-tempo/tau);
+V6Nt = (V6t0)*e.^(-tempo/tau);
 
 natural = figure ();
 
-plot(tempo*1000,V6_Nt)
+plot(tempo*1000,V6Nt)
 
 xlabel ("t[ms]");
 ylabel ("V6(t) [V]");
 print (natural, "natural.eps", "-depsc");
-
+hold off
 
 
 #------------------------------------------------------------Alínea 4--------------------------------------------------------------------
@@ -209,20 +209,20 @@ printf ("octave4p_END\n");
 #FifthPoint
 printf ("\n\nPARTE 5\n");
 t=-5e-3:1e-6:20e-3;
-V6_all(t>=0)= V_4(6)*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
-V6_all(t<0) = V6_i;
-Vs_all(t>=0) = sin(2*pi*f*t(t>=0));
-Vs_all(t<0) = Vs;
+V6all(t>=0)= V_4(6)*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
+V6all(t<0) = V6i;
+Vsall(t>=0) = sin(2*pi*f*t(t>=0));
+Vsall(t<0) = Vs;
  
 hf2 = figure();
-plot(t, V6_all, t, Vs_all);
+plot(t, V6all, t, Vsall);
 xlabel ("t[ms]");
 ylabel ("v_6(t) [V] and v_s(t) [V]");
 legend("v6","vs");
 #title ("Final solution of v_6(t) and v_s(t) in the interval [-5,20]ms");
 print (hf2, "theoretical_5.eps", "-color");
 close(hf2);
-
+hold off
 
 
 #------------------------------------------------------------Alínea 6--------------------------------------------------------------------
@@ -284,6 +284,7 @@ legend("v6","vc","vs");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Phase v_c(f), v_6(f), v_s(f) [degrees]");
 print (hg, "../mat/Phase(degrees).eps");
+hold off
 
 #Creation of the graphic for the magnitude of v6, vc and vs in Hertz
 hj = figure ();
@@ -297,7 +298,7 @@ legend("v6","vs","vc");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Magnitude v_c, v_6, v_s [dB]");
 print (hj, "../mat/MagnitudedB.eps");
-
+hold off
 
 
 #-------------------------------------------------------------Ngspice--------------------------------------------------------------------
