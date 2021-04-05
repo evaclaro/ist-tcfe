@@ -228,56 +228,72 @@ close(hf2);
 #------------------------------------------------------------Alínea 6--------------------------------------------------------------------
 #SixthPoint
 printf ("\n\nPARTE 6\n");
+
+#Creation of the needed variables
 phasor_vs = 1*power(e,-i*pi/2);
-f6 = -1:1e-03:6; 
-W = 2*pi*power(10,f6);
+f_6 = -1:1e-03:6; 
+W = 2*pi*power(10,f_6);
 Y_c = i .* W .* C;
 Z_c = 1. ./Y_c;
 
-A_6 = [-Kb - G2, G2, Kb, 0;         
-     G3-Kb,  0, Kb-G3-G4, -G6;
-     Kb-G1-G3, 0, G3-Kb, 0;
-     0, 0, 1, Kd * G6- R7 * G6-1]; 
-B_6 = [0; 0; -phasor_vs * G1; 0];
+#Matrix of the nodal method for the voltages that don't depend on the frequency (V2, V3, V5, V7)
+A_6 = [-G3+Kb,  0, -Kb+G3+G4, G6;
+       Kb + G2, -G2, -Kb, 0;         
+       -Kb+G1+G3, 0, -G3+Kb, 0;
+       0, 0, 1, Kd*G6-R7*G6-1]; 
+       
+#Matrix of the results
+B_6 = [0; 0; phasor_vs * G1; 0];
 
+#Matrix of the results (V2, V3, V5, V7)
 V_6=A_6\B_6; 
- 
-v8 = R7*(G1+G6)*V_6(4) + 0*Z_c;
-v66 = ((G5+Kb)*V_6(3)-Kb*V_6(1)+ (v8 ./ Z_c)) ./ (G5 + 1. ./ Z_c);
-vc6 = v66 - v8;
-vs6 = power(e,i*pi/2) + 0*W;
 
-phase_v66 = 180/pi*(angle(v66)); 
+#Atribuitions of the values to the variables
+V2_ph = V_6(1,1)
+V3_ph = V_6(2,1)
+V5_ph = V_6(3,1)
+V7_ph = V_6(4,1)
 
-for  var=1:length(phase_v66)
-	if(phase_v66(var)<= -90) 
-		phase_v66(var) = phase_v66(var) + 180;
-	elseif (phase_v66(var)>= 90) 
-		phase_v66(var) = phase_v66(var) - 180;
+#Calculation of the voltages v6 and v8 and the voltage source vs and the voltage of the capacitor C
+v8_ph = R7*(G1+G6)*V7_ph + 0*Z_c;
+v6_ph = ((G5+Kb)*V5_ph-Kb*V2_ph+ (v8_ph ./ Z_c)) ./ (G5 + 1. ./ Z_c);
+vc_ph = v6_ph - v8_ph;
+vs_ph = power(e,i*pi/2) + 0*W;
+
+#Definition of the phase of v6 in degrees
+phase_v6_ph = 180/pi*(angle(v6_ph)); 
+
+#Ensuring that the angle is in the range of -90 to 90 degrees
+for  var=1:length(phase_v6_ph)
+	if(phase_v6_ph(var)<= -90) 
+		phase_v6_ph(var) = phase_v6_ph(var) + 180;
+	elseif (phase_v6_ph(var)>= 90) 
+		phase_v6_ph(var) = phase_v6_ph(var) - 180;
 endif
 endfor
 
-
+#Creation of the graphic for the phases of v6, vc and vs in degrees
 hg = figure ();
-plot (f6, phase_v66, "b");
+plot (f_6, phase_v6_ph, "y");
 hold on;
-plot (f6, 180/pi*(angle(vc6) + pi), "g");
+plot (f_6, 180/pi*(angle(vc_ph) + pi), "m");
 hold on;
-plot (f6, (180*angle(vs6))/pi, "m");
+plot (f_6, (180*angle(vs_ph))/pi, "c");
 
-legend("v_6","v_c","v_s");
+legend("v6","vc","vs");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Phase v_c(f), v_6(f), v_s(f) [degrees]");
 print (hg, "../mat/Phase(degrees).eps");
 
+#Creation of the graphic for the magnitude of v6, vc and vs in Hertz
 hj = figure ();
-plot (f6, 20*log10(abs(v66)), "b");
+plot (f_6, 20*log10(abs(v6_ph)), "y");
 hold on;
-plot (f6, 20*log10(abs(vs6)), "g");
+plot (f_6, 20*log10(abs(vs_ph)), "m");
 hold on;
-plot (f6, 20*log10(abs(vc6)), "m");
+plot (f_6, 20*log10(abs(vc_ph)), "c");
 
-legend("v_6","v_s","v_c");
+legend("v6","vs","vc");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Magnitude v_c, v_6, v_s [dB]");
 print (hj, "../mat/MagnitudedB.eps");
@@ -370,7 +386,6 @@ fprintf (file, ".IC v(N6)=%e v(N8)=%e\n", x1, x2);%atencaoooo
 fclose(file);
 
 movefile('pergunta4e5.txt', '../sim');
-
 
 
 
