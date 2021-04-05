@@ -120,19 +120,144 @@ I_d
 \end{bmatrix}
 \end{centrar}
 
+\subsection{Ponto 1}
 
-%After solving the system with Octave tools we get the Table~\ref{tab:nodal} results.In Table~\ref{tab:nodal} voltage values are identified with V and their measure is $V$(Volts), the remaining ones are current values so their units are $A$(Amperes).
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/octave1i_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:mat1}
+\end{table}
 
-%\begin{table}[h]
-%  \centering
-%  \begin{tabular}{|l|r|}
-%    \hline    
-%    {\bf Name} & {\bf Value [A or V]} \\ \hline
-%    \input{../mat/octavev_tab}
-%  \end{tabular}
-%  \caption{Results obtained by nodal analysis method with octave tool}
-%  \label{tab:nodal}
-%\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/octave1v_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:mat1a}
+\end{table}
+
+
+
+\subsection{Ponto 2}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/octave2v_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:mat2}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/octave2i_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:mat2a}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/octave2valores_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:mat2b}
+\end{table}
+
+\subsection{Ponto 3}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../mat/natural.eps}
+\caption{C Mesh with an adicional voltage source} %mudar legendaaaaaaa
+\label{fig:mat3}
+\end{figure}
+
+\subsection{Ponto 4}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/octave4p_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:mat4}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/octave4i_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:mat4a}
+\end{table}
+
+
+
+\subsection{Ponto 5}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../mat/theorical_5.eps}
+\caption{C Mesh with an adicional voltage source} %mudar legendaaaaaaa
+\label{fig:mat4}
+\end{figure}
+
+
+\subsection{Ponto 6}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../mat/Phase.eps}
+\caption{C Mesh with an adicional voltage source} %mudar legendaaaaaaa
+\label{fig:mat5db}
+\end{figure}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{../mat/MagnitudedB.eps}
+\caption{C Mesh with an adicional voltage source} %mudar legendaaaaaaa
+\label{fig:mat5ps}
+\end{figure}
+
+
+
+After solving the system with Octave tools we get the Table results.In Table voltage values are identified with V and their measure is $V$(Volts), the remaining ones are current values so their units are $A$(Amperes).
+
+
 
 
 
