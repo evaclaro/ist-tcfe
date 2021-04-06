@@ -7,17 +7,19 @@ pkg load symbolic
 values = dlmread('data.txt');
 
 %Declaration of the values given by the python script
-R1 = values(3,4)*1000;
-R2 = values(4,3)*1000;
-R3 = values(5,3)*1000;
-R4 = values(6,3)*1000;
-R5 = values(7,3)*1000;
-R6 = values(8,3)*1000;
-R7 = values(9,3)*1000;
-Vs = values(10,3);
-C = values(11,3)/1000000;
-Kb = values(12,3)/1000;
-Kd = values(13,3)*1000;
+printf ("data_TAB\n");
+R1 = values(3,4)*1000
+R2 = values(4,3)*1000
+R3 = values(5,3)*1000
+R4 = values(6,3)*1000
+R5 = values(7,3)*1000
+R6 = values(8,3)*1000
+R7 = values(9,3)*1000
+Vs = values(10,3)
+C = values(11,3)/1000000
+Kb = values(12,3)/1000
+Kd = values(13,3)*1000
+printf ("data_END\n");
 
 #Calculation of the conductance of each resistor of the circuit
 G1=1/R1;
