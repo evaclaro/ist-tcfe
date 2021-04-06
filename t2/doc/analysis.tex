@@ -1,86 +1,64 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-\hspace{0,5cm} In this section, the circuit shown in Figure~\ref{fig:circuito} is analysed theoretically, in terms of its node voltages and mesh currents.
-
-For this mesh method, circular currents are defined in the counter-clockwise direction and then the circuit is evaluated considering those new currents.
-
-Starting by number the nodes arbitrarily, assigning current names and directions to all branches also arbitrarily and defining one node as ground (GND). 
-
-Being mesh A the one with the resistors $R_1$, $R_3$ and $R_4$, and the voltage source $V_a$, the mesh B with the resistors $R_2$, $R_3$ and $R_5$ and the voltage controlled current source $I_b$, the mesh C with the resistors $R_4$, $R_6$ and $R_7$, and the current controlled voltage source $V_c$, and, at last, the mesh D with the resistor $R_5$, the current source $I_d$ and the current controlled voltage source $V_c$. 
-
-A system of equations obtained applying the Kirchhoff Current Law (KCL)to each mesh can be written as 
-
-
-It was used 3 equations (4 meshes - 1 = 3 linearly independent equations): Mesh A, Mesh C and an addicional equation which is 
-
-\begin{equation}
-I_b = K_b V_b \textrm{, where } V_b = (I_B - I_A)R_3
-\end{equation}
-
-It's important to notice that D loop is independent of the remaining ones so it isn't don't need to determine the current $I_D$ as it is given on the initial data.
-
-%After solving the system with Octave tools we get the Table~\ref{tab:mesh} results. In Table~\ref{tab:mesh} voltage values are identified with V and their measure is $V$(Volts), the remaining ones are current values so their units are $A$(Amperes).
-
-
-The Nodal Analysis Method is another general procedure for analysing circuits using node voltages as the circuit variables. 
-
-To find the nodal voltages we chose 7 equations (8 nodes - 1 = 7 linearly independent equations) that comprise:
-\begin{itemize}
-\item  KCL in nodes not connected to voltage sources;
-\item Additional equations for nodes related by voltage sources.
-\end{itemize}
-
-It was used the equations regarding the nodes 0, 2, 5, 6 therefore it was necessary three additional equations.
-
-We chose to put the ground zero between three branches corresponding to the ones with $R_1, R_2$ and $R_3$ because it will facilitate the system of equations.
-
-The next equation was used for node 1 because node 1 and node 4 are connected to an independent voltage source.
-\begin{equation}
-V_1-V_4=V_a 
-\end{equation}
-
-Secondly knowing that $V_c=K_c I_c$ and $V_c=V_3 - V_7$  it was concluded that for node 7 the equation obtained was
-
-\begin{equation}
-V_3 - V_7 = K_c (V_3 - V_6) G_6
-\end{equation}
-
-To find the third equation (Equation~\ref{eq:super}) it was used the continuity of the current to create a "super-knot" (nodes 3 and 7)
-
-\begin{equation}
-(V_4-V_3)G_4 + (V_0-V_3)G_3 +(V_5-V_3)G_5-I_d+(V_6-V_7)G_7=0
-\label{eq:super}
-\end{equation}
-
+\hspace{0,5cm} In this section, the circuit shown in Figure~\ref{fig:circuito} is analysed theoretically, with the Nodal Analysis Method, which uses node voltages as the circuit variables. 
 
 
 \subsection{Node analysis for t$<$0}
 
+\hspace{0,5cm} The aim of using this method is to determine every node voltage, therefore we considered the node 0 a reference node. However, due to the existence of the independent voltage source $V_s$ and the current controlled voltage source $V_d$, it is useless to analyse nodes 0 and 1 (connected to $V_s$) and also nodes 5 and 8 (connected to $V_d$) since nodes connected to voltage sources can't be analysed. So, this means that we can only analyse nodes 2,3,6 and 7.
+
+In order to determine all the unknown node voltage values, it is necessary to have eight linearly independent equations. Before $t$ = 0s, $v_s$ is constant, which means that the capacitor is assumed to also be constant and fully charged, behaving like an open-circuit, therefore $I_c$ = 0.
+
+Four of the needed equations are given by the nodal analysis:
+Node 2
+\begin{equation}
+(V_3-V_2)G_2 - (V_2-V_5)G_3 - (V_2-V_1)G_1 = 0
+\label{eq:1.1}
+\end{equation}
+
+Node 3
+\begin{equation}
+(V_2-V_5)K_b - (V_3-V_2)G_2 = 0
+\label{eq:1.2}
+\end{equation}
+
+Node 6
+\begin{equation}
+(V_2-V_5)K_b - (V_6-V_5)G_5 = 0
+\label{eq:1.3}
+\end{equation}
+
+Node 7
+\begin{equation}
+-V_7 G_6 - (V_7-V_8)G_8 = 0
+\label{eq:1.4}
+\end{equation}
+
+We still need another four equations. For this reason, we can use these two trivial equations
 \begin{equation}
 V_0=0
-\label{eq:1.1}
+\label{eq:1.5}
 \end{equation}
 
 \begin{equation}
 V_1=V_s
-\label{eq:1.2}
+\label{eq:1.6}
 \end{equation}
 
-\begin{equation}
-(V_2-V_1)G_1 + V_5 G_4 +  V_7 G_6 =0
-\label{eq:1.3}
-\end{equation}
-
+We can also use the fact that $V_5 - V_8 = V_d = K_d I_d$ and $I_d$, according the Ohm's Law, is equal to $G_7 (V_0 - V_7)$ which means
 \begin{equation}
 -V_7 G_6 K_d = V_5 - V_8
-\label{eq:1.4}
+\label{eq:1.7}
 \end{equation}
 
+At last, since there was still missing an equation, we considered a super node containing the branch that includes $v_s$
+\begin{equation}
+(V_2-V_1)G_1 + V_5 G_4 +  V_7 G_6 = 0
+\label{eq:1.8}
+\end{equation}
 
-
-The system of equations that will be solved is:
-
+The system of equations that will be solved in form of matrix and with the assitance of Octave is:
 \begin{centrar}
 \begin{bmatrix} 
 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -114,8 +92,18 @@ V_s \\
 \end{bmatrix}
 \end{centrar}
 
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/octave1v_tab}
+  \end{tabular}
+  \caption{Nodal voltage values (t<0)}
+  \label{tab:mat1a}
+\end{table}
 
-
+By using Ohm's Law, we calculate the values of the currents passing in the resistors. The value of the current in $v_s$ is simmetrical to $I_R1$ and the value of the current in $V_d$ is simmetrical to $I_R6$.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -123,28 +111,29 @@ V_s \\
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/octave1i_tab}
   \end{tabular}
-  \caption{LEGENDA}
+  \caption{Branch and voltage sources current values (t<0)}
   \label{tab:mat1}
-\end{table}
-
-
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../mat/octave1v_tab}
-  \end{tabular}
-  \caption{LEGENDA}
-  \label{tab:mat1a}
 \end{table}
 
 
 
 \subsection{Determining $R_{eq}$}
 
+Analysing the circuit now for t = 0, we notice that $v_s$ equals 0 (short circuit), thus $V_1$ is also null.
+In order to determine the equivelant resistence ($R_eq$)of the circuit seen from the capacitors terminals and the time constant (much needed for the following subsections), we replace the capacitor with a voltage source $V_x = V_6 - V_8$ and do another nodal analysis to determine the current supplied by $V_x$, which will be called $I_x$.
+These two values determine $R_eq$ with the equation:
 The system of equations that will be solved is:
+\begin{equation}
+R_eq = V_x/I_x
+\label{eq:1.9}
+\end{equation}
 
+We use the values $V_6$ and $V_8$ from the previous subsection since the voltage drop at the terminals of the capacitor needs to be a continuous function, this means that there cannot be a sudden energy discontinuity in the capacitor.
+This is the most efficient procedure to determine the equivelant resistence in such a complex circuit, with this reasoning being based on the usage of the $Thevenin$ and $Norton$ theorems, where $V_x$ is equivalent to $Thevenin's$ voltage and $I_x$ is $Norton's$ current.
+
+For this nodal analysis, we used almost the same equations that were used in the previous subsection, except, of course, the trivial one for $V_1$, since now $V_1 = 0$, and we replaced the node 6 equation with the new equation $V_x = V_6 - V_8$.
+
+The system of equations that will be solved in form of matrix and with the assitance of Octave is:
 \begin{centrar}
 \begin{bmatrix} 
 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -178,45 +167,72 @@ V_x \\
 \end{bmatrix}
 \end{centrar}
 
-
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../mat/octave2v_tab}
   \end{tabular}
-  \caption{LEGENDA}
+  \caption{Nodal voltage values (t<0)}
   \label{tab:mat2}
 \end{table}
 
+By using Ohm's Law, we calculate the values of the currents passing in the resistors.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [A]} \\ \hline
     \input{../mat/octave2i_tab}
   \end{tabular}
-  \caption{LEGENDA}
+  \caption{Branch and voltage sources current values (t=0)}
   \label{tab:mat2a}
 \end{table}
+
+Now that we have all values, we can use the Kirchhoff Current Law (KCL) in node 6 in order to compute the value of $I_x$
+\begin{equation}
+I_x = -K_b (V_2 - V_5) - (V_6 - V_5) G5
+\label{eq:1.10}
+\end{equation}
+
+With the values of $V_x$ and $I_x$ determined, we can calculate $R_eq$ with \ref{eq:1.9} and the time constant value (EVA! PÕE AQUI O TAU, SFF) with the equation
+
+\begin{equation}
+\tau = R_eq C
+\label{eq:1.11}
+\end{equation}
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value} \\ \hline
     \input{../mat/octave2valores_tab}
   \end{tabular}
-  \caption{LEGENDA}
+  \caption{$I_x$ (in A), $R_eq$ (in Ohm) and $TAU$ (adimensional) values}%EVA; AQUI
   \label{tab:mat2b}
 \end{table}
 
 \subsection{Natural Solution with node analysis for t$\geq$0}
+The aim of this section is to calculate the natural solution of $v_6n (t)$. The natural response is what the circuit does including the initial conditions (initial voltage of the capacitor) but with the input surpressed.
+Knowing the general solution ($v_6n (t) = V_6(+infinity) + (V_6(0) - V_6(+infinity))e^(-t/tau)$), and the fact that the capacitor begins charged but it discharges as the time passes, since it consumes energy, meaning that $V_6(+infinity) = 0$, we can write the following equation:
+\begin{equation}
+v_6n (t) = V_6(0) e^(-t/tau)
+\label{eq:1.12}
+\end{equation}
+
+We also know that $V_x = V_6 - V_8$, and that the value of $V_8 (0)$ is aproximately 0, which means that
+\begin{equation}
+v_6n (t) = V_x e^(-t/tau)
+\label{eq:1.13}
+\end{equation}
+
+Hence, the graph of $V_6n$ in function of the time, in the inteerval [0;20] ms is represent in \ref{fig:mat3}. The result is no suprise, as it shows below, being a negative exponential graph.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../mat/natural.eps}
-\caption{LEGENDA} %mudar legendaaaaaaa
+\caption{Natural solution $v_6n (t)$} 
 \label{fig:mat3}
 \end{figure}
 
