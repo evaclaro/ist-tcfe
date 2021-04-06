@@ -13,7 +13,8 @@ all:	python
 	cp doc/report.pdf .
 
 python:
-	python t2_datagen.py > ../t2/mat/data.txt
+	@echo "Please enter the lowest student number in your group:"
+	@python t2_datagen.py > ../t2/mat/data.txt
 	
 clean:
 	make -C mat clean
