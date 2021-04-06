@@ -20,7 +20,6 @@ echo  "Operating point"
 echo "********************************************"
 
 echo  "op1_TAB"
-print @Vaux[i]
 print @Hd[i]
 print @Vs[i]
 print all

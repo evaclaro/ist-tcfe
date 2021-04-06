@@ -19,7 +19,6 @@ echo "********************************************"
 
 
 echo  "op2_TAB"
-print @Vaux[i]
 print @Hd[i]
 print @Vs[i]
 print all

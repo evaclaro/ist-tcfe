@@ -1,17 +1,18 @@
 \section{Simulation Analysis}
+
 \label{sec:simulation}
-
-
-The Table~\ref{tab:op1} shows the simulated operating point results for the circuit described in Figure~\ref{fig:circuito}.
+First of all, in this simulation is important to explain the creation of an auxiliary voltage $V_{aux}$ (with a the same voltage of $V_{7}$) that was put between N7 and R7 as shown in Figure~\ref{fig:malhaD}. Consequently, this led to the appearance of a node that we designated by N9 that has the same voltage as N7 (the drop voltage is 0). This was necessary because of Ngspice software requirements. After doing that ngspice was able to compute and determine all node voltages and current branches.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{malhaD.pdf}
-\caption{D Mesh with an adicional voltage source} %mudar legendaaaaaaa
+\includegraphics[width=0.8\linewidth]{malhaD.pdf}
+\caption{D Mesh with an additional voltage source} 
 \label{fig:malhaD}
 \end{figure}
 
 
 \subsection{Operating Point Analysis for t$<$0}
+
+The Table~\ref{tab:op1} shows the simulated operating point results for the circuit described in Figure~\ref{fig:circuito}, considering t$<$0, which means $V_{s}(t)$=$V_{s}$.
 
 \begin{table}[H]
   \centering
@@ -26,8 +27,9 @@ The Table~\ref{tab:op1} shows the simulated operating point results for the circ
   \label{tab:op1}
 \end{table}
 
-\subsection{Determining $R_{eq}$}
-
+\subsection{Operating Point Analysis for t$=$0}
+This second part covers the simulation of the circuit for t$=$0. To do that the capacitor is replaced with a voltage source $V_{x}$ = $V_{6}$ - $V_{8}$ using the values obtained in the previous section. This is necessary because for t$\leq$0 the voltage in the capacitor is the same. So to mantain the boundary conditions $V_{6}$ and $V_{8}$ the capacitor is replaced with the initial voltage source.
+ 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -42,38 +44,45 @@ The Table~\ref{tab:op1} shows the simulated operating point results for the circ
 \end{table}
 
 \subsection{Natural Solution}
+In order to study the natural solution response of the circuit in the interval [0;20]ms using the boundary conditions ($V_{6}$ and $V_{8}$) calculated before, a transient analysis was realized. 
+Fig.~\ref{fig:sim3} shows the plot of the required results.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim3.pdf}
-\caption{LEGENDA} %mudar legendaaaaaaa
+\includegraphics[width=0.8\linewidth]{../sim/sim3.pdf}
+\caption{Natural Response of $V_{6}$} 
 \label{fig:sim3}
 \end{figure}
 
 \subsection{Total Solution}
 
+In the fourth section a total response of node 6 was perfomed, using the same procedure and interval of 3.3 with a initial sinusoidal voltage source $V_{s}(t)$ that has a frequency of 1000Hz. 
+Fig.~\ref{fig:sim4} shows the plot of the required results.
+
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim4.pdf}
-\caption{LEGENDA} %mudar legendaaaaaaa
+\includegraphics[width=0.8\linewidth]{../sim/sim4.pdf}
+\caption{Total Response of $V_{6}$ and $V_{s}$}
 \label{fig:sim4}
 \end{figure}
+It is important to note that during the time interval considered the voltage in the capacitor diminuish until its phase differs $\pi$ from the voltage source.
 
 \subsection{Frequency Responses}
 
+In this part of the chapter a small signal analysis was realized. The frequency response is simulated on node 6 for the frequency between 0.1Hz to 1Mhz. 
+Since $V_{s}$ is the source of the frequency and $V_{6}$ is an output voltage is expected to $V_{s}$ to remain constant and $V_{6}$ to decrease. This can be seen in the following figures~\ref{fig:sim5db} and~\ref{fig:sim5ph}.
+
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim5db.pdf}
-\caption{LEGENDA} %mudar legendaaaaaaa
+\includegraphics[width=0.8\linewidth]{../sim/sim5db.pdf}
+\caption{Magnitude response for $V_{6}$ and $V_{s}$ (in dB)} 
 \label{fig:sim5db}
 \end{figure}
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim5ph.pdf}
-\caption{LEGENDA} %mudar legendaaaaaaa
+\includegraphics[width=0.8\linewidth]{../sim/sim5ph.pdf}
+\caption{Phase response for $V_{6}$ and $V_{s}$ (in degrees)} 
 \label{fig:sim5ph}
 \end{figure}
 
-In this simulation is important to explain the creation of an auxiliary voltage $V_b$ (with a voltage equal to $0V$) that was put between N6 and R7 as shown in Figure~\ref{fig:malhaD}. Consequently, this led to the appearance of a node that we designated by N8 that has the same voltage as N6.
 
-This was necessary because of Ngspice software requirements.
 
 By observing the Table~\ref{tab:op1},Table~\ref{tab:mat1} and Table~\ref{tab:mat2} values it's possible to conclude that the simulated results are the same as the theoretical results.%são mesmo mesmo iguais?
 
