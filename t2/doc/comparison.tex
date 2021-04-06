@@ -1,0 +1,69 @@
+\section{Side by Side Comparison}
+\label{sec:comparison}
+
+
+
+
+\begin{table}[ht]
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op1_tab}
+  \end{tabular}
+  \caption{Simulation nodal voltage results. All variables are expressed in Volt or Ampere. (Ngspice)}} 
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/tabela1_tab}
+  \end{tabular}
+  \caption{Theoretical nodal voltage results. All variables are expressed in Volt.(Octave)}}
+ 
+\end{table}
+
+
+
+\begin{table}[ht]
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op2_tab}
+  \end{tabular}
+  \caption{Simulation nodal voltage results. All variables are expressed in Volt or Ampere. (Ngspice)}} 
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/tabela2_tab}
+  \end{tabular}
+  \caption{Theoretical nodal voltage results. All variables are expressed in Volt.(Octave)}}
+ 
+\end{table}
+
+
+TEXTO NAO PERTENCE AQUI
+In this simulation is important to explain the creation of an auxiliary voltage $V_b$ (with a voltage equal to $0V$) that was put between N6 and R7 as shown in Figure~\ref{fig:malhaD}. Consequently, this led to the appearance of a node that we designated by N8 that has the same voltage as N6.
+
+This was necessary because of Ngspice software requirements.
+
+By observing the Table~\ref{tab:op1},Table~\ref{tab:mat1} and Table~\ref{tab:mat2} values it's possible to conclude that the simulated results are the same as the theoretical results.%são mesmo mesmo iguais?
+
+
+However, was also calculated the relative errors made in order to understand the accuracy of the results. 
+
+Related to that calculations, it was noticed that in an experimental procedure, the calculation of relative errors is made by comparing experimental values and theorical values, meaning that the decimal places used in the theoretical value to be considered will be in accordance with the experimentally obtained places.
+
+
+Considering that, in our case, the experimental values are obtained through NGSice, we must use theoretical values with the same number of decimal places returned by the simulation for calculating the errors, as it has a number of decimal places lower than that of the octave. By doing this calculating, all error values absolute and relative are equal to zero. 
+
+Therefore, we can see that the order of magnitude of the errors will be residual.
+
+
+
+

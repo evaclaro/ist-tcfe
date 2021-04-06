@@ -77,8 +77,25 @@ Ivsi = IR1i
 IVdi = IR3i+IR4i-IR5i
 printf ("octave1i_END\n");
 
-
-
+printf ("tabela1_TAB\n")
+IVdi = IR3i+IR4i-IR5i
+Ivsi = IR1i
+Ib = Kb*(V2i - V5i)
+IR1i = G1*(V2i-V1i)
+IR2i = G2*(V3i-V2i)
+IR3i = G3*(V2i-V5i)
+IR4i = G4*(-V5i)
+IR5i = G5*(V5i-V6i)
+IR6i = G6*(-V7i)
+IR7i = G7*(V7i-V8i);
+V1i = V_1(2,1)
+V2i = V_1(3,1)
+V3i = V_1(4,1)
+V5i = V_1(5,1)
+V6i = V_1(6,1)
+V7i = V_1(7,1)
+V8i = V_1(8,1)
+printf ("tabela1_END\n");
 #------------------------------------------------------------Alínea 2--------------------------------------------------------------------
 #SecondPoint
 printf ("\n\nPARTE 2\n");
@@ -137,6 +154,26 @@ Reqt0 = abs(Vx/Ixt0)
 tau = Reqt0*C
 printf ("octave2valores_END\n");
 
+
+printf ("tabela2_TAB\n")
+IVdt0 = IR3t0+IR4t0-IR5t0
+Ivst0 = IR1t0
+Ib = Kb*(V2t0 - V5t0)
+IR1t0 = G1*V2t0
+IR2t0 = G2*(V3t0-V2t0)
+IR3t0 = G3*(V2t0-V5t0)
+IR4t0 = G4*(-V5t0)
+IR5t0 = G5*(V5t0-V6t0)
+IR6t0 = G6*(-V7t0)
+IR7t0 = G7*(V7t0-V8t0)
+V1t0 = V_2(2,1)
+V2t0 = V_2(3,1)
+V3t0 = V_2(4,1)
+V5t0 = V_2(5,1)
+V6t0 = V_2(6,1)
+V7t0 = V_2(7,1)
+V8t0 = V_2(8,1)
+printf ("tabela2_END\n");
 
 
 #------------------------------------------------------------Alínea 3--------------------------------------------------------------------
