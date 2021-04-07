@@ -245,30 +245,21 @@ Considering all the informations above, we are able to solve the system with onl
 
 \begin{centrar}
 \begin{bmatrix} 
-- K_b -\frac{1}{R_2}  & \frac{1}{R_2} & K_b & 0 \\
-\frac{1}{R_3} - K_b & 0 & K_b -\frac{1}{R_3}-\frac{1}{R_4} & -\frac{1}{R_6} \\
-K_b-\frac{1}{R_1}-\frac{1}{R_3} & 0 & \frac{1}{R_3}-K_b & 0 \\
-0 & 0 & 1 & \frac{K_d - R_7}{R_6}-1
+-\frac{1}{R_1} & \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} & -\frac{1}{R_2} & -\frac{1}{R_3} & 0 & 0 & 0 \\
+0 & -\frac{1}{R_2} - K_b & \frac{1}{R_2} & K_b & 0 & 0 & 0 \\
+0 & K_b & 0 & -K_b -\frac{1}{R_5}& \frac{1}{R_5} + \frac{1}{Z_c} & 0 & 0
+\\ 0 & 0 & 0 & 0 & 0 & \frac{1}{R_6} + \frac{1}{R_7} & -\frac{1}{R_7}
+\\ 1 & 0 & 0 & 0 & 0 & 0 & 0
+\\ 0 & 0 & 0 & 1 & 0 & \frac{K_d}{R_6} & -1
+\\ \frac{1}{R_1} & -\frac{1}{R_1} & 0 & -\frac{1}{R_4} & 0 & -\frac{1}{R_6} & 0
 \end{bmatrix} 
 \begin{bmatrix} 
-V_2 \\ 
-V_3  \\ 
-V_5 \\ 
-V_7 
+V_1 \\ V_2 \\ V_3 \\ V_5 \\ V_6 \\ V_7 \\ V_8
 \end{bmatrix} =
 \begin{bmatrix} 
-0\\ 
-0 \\ 
-phasor v_s \\ 
-0
+0 \\ 0 \\ 0 \\ 0 \\ V_s \\ 0 \\ 0
 \end{bmatrix}
 \end{centrar}
-
-For the matrix above, we considered that: 
-\begin{equation}
-phasor v_s = e^{-i\pi/2}
-\label{eq:vsphasor}
-\end{equation}
 
 Also considering that,
 \begin{equation}
@@ -276,22 +267,8 @@ Also considering that,
 \end{equation}\par
 Where $\omega= 2\pi f$ and $f= 1000Hz$.\par
 
-Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determine the phasor voltages in all nodes we have the following equations for the determination of the remaining variables:\par
+Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determine the phasor voltages in all nodes.\par
 
-\begin{equation}
-v_8 = R_7V_7(\frac{1}{R_1} + \frac{1}{R_6});
-\label{eq:V_8}
-\end{equation}
-
-\begin{equation}
-v_6 = \frac{V_5(K_b + \frac{1}{R_5}) - K_bV_2 + \frac{v_8}{Z_c}}{\frac{1}{R_5} + \frac{1}{Z_c}} 
-\label{eq:V_6}
-\end{equation}
-
-\begin{equation}
-v_c = v_6 - v_8
-\label{eq:V_c}
-\end{equation}
 
 We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated with the "imag", the "real" and the "atan" funcions.The obtained results are the ones that follow next. \par
 
@@ -316,7 +293,6 @@ We have calculated the module of $V_6$ with "abs" Octave's function. Then, the p
   \caption{Amplitudes Results}
   \label{tab:mat4a}
 \end{table}
-
 
 \subsection{Natural and Forced Superimposed}
 In this subsection, we determine the final total solution for the value of $v_6$ for the given frequency of 1000 Hz (= 1kHz) by superimposing the natural and forced solutions (determined in the third and forth subsection, respectively), giving us the following equation:
