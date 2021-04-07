@@ -239,60 +239,61 @@ Hence, the graph of $V_{6n}$ in function of the time, in the interval [0;20] ms 
 
 In this Section, we have used a phasor voltage source $V_s$, which was replaced with its complex amplitude 1.
 
+After analysing the circuit we notice that $v_1$ equals $v_s$ we do not have to include it in our next matricial system. Also, if we look at the equations on it, the only voltages that depend on the frequency are $v_6$ and $v_8$. 
+
+Considering all the informations above, we are able to solve the system with only 4 equations.Therefore, using nodal method, we have:
+
+\begin{centrar}
+\begin{bmatrix} 
+- K_b -\frac{1}{R_2}  & \frac{1}{R_2} & K_b & 0 \\
+\frac{1}{R_3} - K_b & 0 & K_b -\frac{1}{R_3}-\frac{1}{R_4} & -\frac{1}{R_6} \\
+K_b-\frac{1}{R_1}-\frac{1}{R_3} & 0 & \frac{1}{R_3}-K_b & 0 \\
+0 & 0 & 1 & \frac{K_d - R_7}{R_6}-1
+\end{bmatrix} 
+\begin{bmatrix} 
+V_2 \\ 
+V_3  \\ 
+V_5 \\ 
+V_7 
+\end{bmatrix} =
+\begin{bmatrix} 
+0\\ 
+0 \\ 
+phasor v_s \\ 
+0
+\end{bmatrix}
+\end{centrar}
+
+For the matrix above, we considered that: 
+\begin{equation}
+phasor v_s = e^{-i\pi/2}
+\label{eq:vsphasor}
+\end{equation}
+
 Also considering that,
 \begin{equation}
      Z_c = \frac{1}{j\omega c}
 \end{equation}\par
 Where $\omega= 2\pi f$ and $f= 1000Hz$.\par
 
-We obtain the equation for $I_c$:
+Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determine the phasor voltages in all nodes we have the following equations for the determination of the remaining variables:\par
 
 \begin{equation}
-  I_c=(V_6-V_8)/Z_c.
+v_8 = R_7V_7(\frac{1}{R_1} + \frac{1}{R_6});
+\label{eq:V_8}
 \end{equation}
-
-For the supernode, we use the following equation:
 
 \begin{equation}
-  (V_1-V_2)G_1+(V_4-V_5)G_4+I_d=0.
+v_6 = \frac{V_5(K_b + \frac{1}{R_5}) - K_bV_2 + \frac{v_8}{Z_c}}{\frac{1}{R_5} + \frac{1}{Z_c}} 
+\label{eq:V_6}
 \end{equation}
 
-
-Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determine the phasor voltages in all nodes we have the following matrix:\par
-
-\begin{centrar}
-\begin{bmatrix} 
--G_1 & G_1 +G_2+G_3 & -G_2 & -G_3 & 0 & 0 & 0  \\
-0 & -G_2 -K_b & G_2 & K_b & 0 & 0 & 0 \\
-0 & K_b & 0 & K_b -G_5 & G_5+ 1/Z_c & 0 & -1/Z_c \\
-0 & 0 & 0 & 0 & 0 & G_6+G_7 & -G_7 \\
-1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 1 & 0 & K_d G_6 & -1 \\
-G_1 & -G_1 & 0 & -G_4 & 0 & -G_6 & 0 
-\end{bmatrix} 
-\begin{bmatrix} 
-V_0 \\ 
-V_1  \\ 
-V_2 \\ 
-V_3 \\  
-V_5 \\ 
-V_6 \\ 
-V_7\\
-V_8
-\end{bmatrix} =
-\begin{bmatrix} 
-0\\ 
-0 \\ 
-0 \\ 
-0\\
-1\\ 
-0 \\  
-0
-\end{bmatrix}
-\end{centrar}
+\begin{equation}
+v_c = v_6 - v_8
+\label{eq:V_c}
+\end{equation}
 
 We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated with the "imag", the "real" and the "atan" funcions.The obtained results are the ones that follow next. \par
-
 
 \begin{table}[H]
   \centering
@@ -324,7 +325,7 @@ v_6(t) = v_{6n}(t) + v_{6f}(t)
 \label{eq:1.20}
 \end{equation}
 
-\pagebreak In Figure \ref{fig:mat4} we plotted the graphs of $v_6(t)$ and $v_s(t)$ in the interval [-5;20] ms. We can clearly divide the solutions in three parts:
+In Figure \ref{fig:mat4} we plotted the graphs of $v_6(t)$ and $v_s(t)$ in the interval [-5;20] ms. We can clearly divide the solutions in three parts:
 \begin{itemize}
 \item $t=[-5;0[ ms$, $v_s = V_s$ and $v_6 = V_6i$ (the value we calculated in the first subsection);
 \item $t=0 ms$, $v_s = 0$ and $v_6 = V_6t0$ (the value we calculated in the second subsection);
