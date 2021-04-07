@@ -152,6 +152,7 @@ printf ("octave2valores_TAB\n");
 Ixt0 = -Kb*(V2t0 - V5t0) - G5*(V6t0-V5t0)
 Reqt0 = abs(Vx/Ixt0)
 tau = Reqt0*C
+Vx = V6i - V8i
 printf ("octave2valores_END\n");
 
 
