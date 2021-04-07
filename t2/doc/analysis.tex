@@ -11,6 +11,7 @@
 In order to determine all the unknown node voltage values, it is necessary to have eight linearly independent equations. Before $t$ = 0s, $v_s$ is constant, which means that the capacitor is assumed to also be constant and fully charged, behaving like an open-circuit, therefore $I_c$ = 0.
 
 Four of the needed equations are given by the nodal analysis:
+\par
 Node 2
 \begin{equation}
 (V_3-V_2)G_2 - (V_2-V_5)G_3 - (V_2-V_1)G_1 = 0
@@ -40,7 +41,6 @@ We still need another four equations. For this reason, we can use these two triv
 V_0=0
 \label{eq:1.5}
 \end{equation}
-
 \begin{equation}
 V_1=V_s
 \label{eq:1.6}
@@ -99,11 +99,11 @@ V_s \\
     {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../mat/octave1v_tab}
   \end{tabular}
-  \caption{Nodal voltage values (t<0)}
+  \caption{Nodal voltage values (t$<$0)}
   \label{tab:mat1a}
 \end{table}
 
-By using Ohm's Law, we calculate the values of the currents passing in the resistors. The value of the current in $v_s$ is simmetrical to $I_R1$ and the value of the current in $V_d$ is simmetrical to $I_R6$.
+By using Ohm's Law, we calculate the values of the currents passing in the resistors. The value of the current in $v_s$ is simmetrical to $I_R1$ and the value of the current in $V_d$ is simmetrical to $I_{R6}$.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -111,7 +111,7 @@ By using Ohm's Law, we calculate the values of the currents passing in the resis
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/octave1i_tab}
   \end{tabular}
-  \caption{Branch and voltage sources current values (t<0)}
+  \caption{Branch and voltage sources current values (t$<$0)}
   \label{tab:mat1}
 \end{table}
 
@@ -120,11 +120,11 @@ By using Ohm's Law, we calculate the values of the currents passing in the resis
 \subsection{Determining $R_{eq}$}
 
 Analysing the circuit now for t = 0, we notice that $v_s$ equals 0 (short circuit), thus $V_1$ is also null.
-In order to determine the equivelant resistence ($R_eq$)of the circuit seen from the capacitors terminals and the time constant (much needed for the following subsections), we replace the capacitor with a voltage source $V_x = V_6 - V_8$ and do another nodal analysis to determine the current supplied by $V_x$, which will be called $I_x$.
-These two values determine $R_eq$ with the equation:
+In order to determine the equivelant resistence ($R_{eq}$)of the circuit seen from the capacitors terminals and the time constant (much needed for the following subsections), we replace the capacitor with a voltage source $V_x = V_6 - V_8$ and do another nodal analysis to determine the current supplied by $V_x$, which will be called $I_x$.
+These two values determine $R_{eq}$ with the equation:
 The system of equations that will be solved is:
 \begin{equation}
-R_eq = V_x/I_x
+R_{eq} = V_x/I_x
 \label{eq:1.9}
 \end{equation}
 
@@ -174,7 +174,7 @@ V_x \\
     {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../mat/octave2v_tab}
   \end{tabular}
-  \caption{Nodal voltage values (t<0)}
+  \caption{Nodal voltage values (t$<$0)}
   \label{tab:mat2}
 \end{table}
 
@@ -196,10 +196,10 @@ I_x = -K_b (V_2 - V_5) - (V_6 - V_5) G5
 \label{eq:1.10}
 \end{equation}
 
-With the values of $V_x$ and $I_x$ determined, we can calculate $R_eq$ with \ref{eq:1.9} and the time constant value (EVA! PÕE AQUI O TAU, SFF) with the equation
+With the values of $V_x$ and $I_x$ determined, we can calculate $R_{eq}$ with \ref{eq:1.9} and the time constant value with the equation
 
 \begin{equation}
-\tau = R_eq C
+\tau = R_{eq} C
 \label{eq:1.11}
 \end{equation}
 
@@ -210,33 +210,56 @@ With the values of $V_x$ and $I_x$ determined, we can calculate $R_eq$ with \ref
     {\bf Name} & {\bf Value} \\ \hline
     \input{../mat/octave2valores_tab}
   \end{tabular}
-  \caption{$I_x$ (in A), $R_eq$ (in Ohm) and $TAU$ (adimensional) values}%EVA; AQUI
+  \caption{$I_x$ (in A), $R_{eq}$ (in Ohm) and $tau(\tau)$ (adimensional) values}
   \label{tab:mat2b}
 \end{table}
 
-\subsection{Natural Solution with node analysis for t$\geq$0}
-The aim of this section is to calculate the natural solution of $v_6n (t)$. The natural response is what the circuit does including the initial conditions (initial voltage of the capacitor) but with the input surpressed.
-Knowing the general solution ($v_6n (t) = V_6(+infinity) + (V_6(0) - V_6(+infinity))e^(-t/tau)$), and the fact that the capacitor begins charged but it discharges as the time passes, since it consumes energy, meaning that $V_6(+infinity) = 0$, we can write the following equation:
+\subsection{Natural Solution with node analysis for t$\geq$ 0}
+The aim of this section is to calculate the natural solution of $v_{6n} (t)$. The natural response is what the circuit does including the initial conditions (initial voltage of the capacitor) but with the input surpressed.
+Knowing the general solution ($v_{6n} (t) = V_6(+\infty) + (V_6(0) - V_6(+\infty))e^{\frac{-t}{\tau}}$), and the fact that the capacitor begins charged but it discharges as the time passes, since it consumes energy, meaning that $V_6(+\infty) = 0$, we can write the following equation:
 \begin{equation}
-v_6n (t) = V_6(0) e^(-t/tau)
+v_{6n} (t) = V_6(0) e^{\frac{-t}{\tau}}
 \label{eq:1.12}
 \end{equation}
 
 We also know that $V_x = V_6 - V_8$, and that the value of $V_8 (0)$ is aproximately 0, which means that
 \begin{equation}
-v_6n (t) = V_x e^(-t/tau)
+v_{6n} (t) = V_x e^{\frac{-t}{\tau}}
 \label{eq:1.13}
 \end{equation}
 
-Hence, the graph of $V_6n$ in function of the time, in the inteerval [0;20] ms is represent in \ref{fig:mat3}. The result is no suprise, as it shows below, being a negative exponential graph.
+Hence, the graph of $V_{6n}$ in function of the time, in the inteerval [0;20] ms is represent in \ref{fig:mat3}. The result is no suprise, as it shows below, being a negative exponential graph.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../mat/natural.eps}
-\caption{Natural solution $v_6n (t)$} 
+\caption{Natural solution $v_{6n} (t)$} 
 \label{fig:mat3}
 \end{figure}
 
 \subsection{Forced Solution with node analysis for t$\geq$0}
+
+In this Section, we have used a phasor voltage source $V_s$, which was replaced with its complex amplitude 1.
+
+Also considering that,
+\begin{equation}
+     Z_c = \frac{1}{j\omega c}
+\end{equation}\par
+Where $\omega= 2\pi f$ and $f= 1000Hz$.\par
+
+We obtain the equation for $I_c$:
+
+\begin{equation}
+  I_c=(V_6-V_8)/Z_c.
+\end{equation}
+
+For the supernode, we use the following equation:
+
+\begin{equation}
+  (V_1-V_2)G_1+(V_4-V_5)G_4+I_d=0.
+\end{equation}
+
+
+Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determine the phasor voltages in all nodes we have the following matrix:\par
 
 \begin{centrar}
 \begin{bmatrix} 
@@ -269,16 +292,17 @@ V_8
 \end{bmatrix}
 \end{centrar}
 
+We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated with the "imag", the "real" and the "atan" funcions.The obtained results are the ones that follow next. \par
 
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [Rad]} \\ \hline
     \input{../mat/octave4p_tab}
   \end{tabular}
-  \caption{LEGENDA}
+  \caption{Phase Results}
   \label{tab:mat4}
 \end{table}
 
@@ -286,19 +310,18 @@ V_8
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../mat/octave4v_tab}
   \end{tabular}
-  \caption{LEGENDA}
+  \caption{Amplitudes Results}
   \label{tab:mat4a}
 \end{table}
-
 
 
 \subsection{Ponto 5}
 In this subsection, we determine the final total solution for the value of $v_6$ for the given frequency of 1000 Hz (= 1kHz) by superimposing the natural and forced solutions (determined in the third and forth subsection, respectively), giving us the following equation:
 \begin{equation}
-v_6(t) = v_(6n)(t) + v_(6f)(t)
+v_6(t) = v_{6n}(t) + v_{6f}(t)
 \label{eq:1.20}
 \end{equation}
 In figure \ref{fig:mat4}, we plotted the graphs of $v_6(t)$ and $v_s(t)$ in the interval [-5;20] ms. We can clearly divide the solutions in three parts: when $t=[-5;0[ ms$, $v_s = V_s$ and $v_6 = V_6i$ (the value we calculated in the first subsection); when $t=0 ms$, $v_s = 0$ and $v_6 = V_6t0$ (the value we calculated in the second subsection); and for $t=]0;20] ms$, $v_s = sin(2\pi f t)$ and $v_6$ is given by the equation \ref{eq:1.20}.
