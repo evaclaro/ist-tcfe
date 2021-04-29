@@ -1,0 +1,71 @@
+\section{Side by Side Comparison}
+\label{sec:comparison}
+
+
+After ending both simulation and theoretical analysis processes, the results were presented on their on sections. However, for presenting a prudent interpretation of the result both tables were put side by side.
+
+In the simulation process is important to refer again the creation of an auxiliary voltage that was put between N7 and R7 as shown in Figure~\ref{fig:malhaD}. Consequently, this resulted on the appearance of a node that we designated by N9 that has the same voltage as N7.
+
+\begin{table}[ht]
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op1_tab}
+  \end{tabular}
+  \caption{Simulation nodal voltage results. All variables are expressed in Volt or Ampere. (Ngspice)}} 
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/tabela1_tab}
+  \end{tabular}
+  \caption{Theoretical nodal voltage results. All variables are expressed in Volt.(Octave)}}
+ 
+\end{table}
+
+It shows that simulated operating point results from NGSpice and the nodal method results from Octave for the circuit that is being studied are the same.
+
+However, was also calculated the relative errors made in order to understand the accuracy of the results. 
+
+Related to that calculations, it was noticed that in an experimental procedure, the calculation of relative errors is made by comparing experimental values and theorical values, meaning that the decimal places used in the theoretical value to be considered will be in accordance with the experimentally obtained places.
+
+Considering that, in our case, the experimental values are obtained through NGSice, we must use theoretical values with the same number of decimal places returned by the simulation for calculating the errors, as it has a number of decimal places lower than that of the octave. By doing this calculating, all error values absolute and relative are equal to zero. 
+
+Therefore, we can see that the order of magnitude of the errors will be residual.
+
+\pagebreak Related to Point 2, it was also required the analysis side by side of the results as shown on Tables below. 
+
+\begin{table}[ht]
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op2_tab}
+ 
+  \end{tabular}
+  \caption{Simulation nodal voltage results. All variables are expressed in Volt or Ampere. (Ngspice)}} 
+\parbox{.45\linewidth}{
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/tabela2_tab}
+    
+  \end{tabular}
+  \caption{Theoretical nodal voltage results. All variables are expressed in Volt.(Octave)}}
+\label{tab:final2} 
+\end{table}
+
+The conclusions obtained were the same that on the first side by side comparison with errors that can be considered zero.
+
+Although, differences in the order of $10^{-15}$ (or lower), are very likely connected to the way the computer programs deal with mathematical operations and calculations (seen that $10^{-15}$ is approximately the precision of a double's mantissa). It's important to notice that the format of the data presented in the Ngspice tables are automatically chosen but the ones from Octave were used with a bigger precision.
+
+Therefore, we can see that the order of magnitude of the errors will always be residual.
+
+
+
+
