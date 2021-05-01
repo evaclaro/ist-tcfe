@@ -1,58 +1,54 @@
 * NGSPICE LAB 3 GROUP 13
 
 .options savecurrents
-.param n =1/11
+.param n =1/16															
 
-*Indepedent Voltage Source, Vs
-Vs 1 0 0 sin(0 230 50 0 0 90) 
+*Indepedent Voltage Source Vs
+Vs 1 0 0 sin(0 230 50 0 0 90) 									  
 
-*Resistors
+*Transformer
+
+F1 1 0 E1 n													  
+E1 2 3 1 0 n 
+
+*Envelop Detector											 
+
+D1 2 4 mydiode
+D2 GND 2 mydiode
+D3 3 4 mydiode
+D4 GND 3 mydiode
+
 R1 4 GND 8k
-R2 4 5 62.84k
 
-*Depedent Current Source 
-Ftransf 1 0 Etransf n
-
-*Depedent Voltage Source
-Etransf 2 3 1 0 n 
-
-*Diodes
-*FULL WAVE RECTIFIER
-
-D1 2 4 D28
-D2 GND 2 D28
-D3 3 4 D28
-D4 GND 3 D28
-
-
-*Diodes in series in the Voltage Regulator
-D5 5 6 D28
-D6 6 7 D28
-D7 7 8 D28
-D8 8 9 D28
-D9 9 10 D28 
-D10 10 11 D28
-D11 11 12 D28
-D12 12 13 D28
-D13 13 14 D28
-D14 14 15 D28
-D15 15 16 D28
-D16 16 17 D28
-D17 17 18 D28
-D18 18 19 D28
-D19 19 20 D28
-D20 20 21 D28
-D21 21 22 D28
-D22 22 23 D28
-D23 23 24 D28
-D24 24 GND D28
-
-*Capacitor
 C1 4 GND 0.0001
+
+*Voltage Regulator											
+
+R2 4 5 62.84k
+D5 5 6 mydiode
+D6 6 7 mydiode
+D7 7 8 mydiode
+D8 8 9 mydiode
+D9 9 10 mydiode 
+D10 10 11 mydiode
+D11 11 12 mydiode
+D12 12 13 mydiode
+D13 13 14 mydiode
+D14 14 15 mydiode
+D15 15 16 mydiode
+D16 16 17 mydiode
+D17 17 18 mydiode
+D18 18 19 mydiode
+D19 19 20 mydiode
+D20 20 21 mydiode
+D21 21 22 mydiode
+D22 22 23 mydiode
+D23 23 24 mydiode
+D24 24 GND mydiode
 
 *Simulation
 
-.model D28 D
+.model mydiode D
 .op
 .end
 .control
@@ -72,22 +68,33 @@ op
 echo "****************"
 echo  "TRANSIENT ANALYSIS"
 echo "****************"
-tran 0.0002 205m 5m
 
-echo "op1_TAB"
+*Transient Analysis starting at 10m and ending at 200m with steps of 0.0001
+tran 0.0001 210m 10m							
+
+*Measure the output voltage level using Ngspice’s average function on at least 1000 points (should be 12V ideally)
+*Measure the output voltage ripple using Ngpice’s min and max functions: ripple(v_O ) = max(v_O ) - min(v_O )
+echo "op1_TAB"							
 print maximum(v(4))-minimum(v(4))
 print mean(v(4))
-echo "op1_END"
-
-echo "op2_TAB"
 print maximum(v(5))-minimum(v(5))
 print mean(v(5))
+echo "op1_END"
+
+*COSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+echo "op2_TAB"
+print 1/((maximum(v(5))-minimum(v(5)))*(mean(v(5)))+10e-6) 
 echo "op2_END"
 
-hardcopy sim3.ps {v(2)-v(3)} {v(4)} {v(5)} {v(5)-12}
-echo sim3_FIG
+*Plot the voltages at the output of the Envelope Detector and Voltage Regulator circuits
+hardcopy sim4.ps {v(2)-v(3)} {v(4)} {v(5)} {v(5)-12}
+echo sim4_FIG
 
-hardcopy sim31.ps {v(4)-12} 
-echo sim31_FIG
+*Plot (v_O – 12) (output AC component + DC deviation)
+hardcopy sim5.ps {v(4)-12} {v(5)-12} 
+echo sim5_FIG
 
+quit
 .endc
+.end
+

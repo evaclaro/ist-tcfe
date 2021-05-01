@@ -9,8 +9,8 @@ f=50;
 Vin = 230;
 
 %attributed values for the secondary circuit
-R1 = 8e3;
-R2 = 62.84e3;
+R1 = 8e3;##
+R2 = 62.84e3;##
 C = 0.0001;
 
 %printing the variables
@@ -118,3 +118,8 @@ merit=1/(total_cost*(ripple_reg+abs(average_reg-12)+10e-6));
 
 printf ("Total cost of the components = %e \n", total_cost);
 printf ("Merit= %e \n", merit);
+
+
+
+
+
