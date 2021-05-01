@@ -5,12 +5,12 @@ pkg load symbolic;
 format long;
 
 %given variables for the primary circuit
-f=50;
+f = 50;
 Vin = 230;
 
 %attributed values for the secondary circuit
-R1 = 8e3;##
-R2 = 62.84e3;##
+R1 = 8e3;
+R2 = 62.84e3;
 C = 0.0001;
 
 %printing the variables
