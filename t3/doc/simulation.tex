@@ -6,7 +6,7 @@ First of all, in this simulation is important to explain the creation of an auxi
 This was necessary because of Ngspice software requirements. After doing that ngspice was able to compute and determine all node voltages and current branches.
 
 \begin{figure}[!ht] \centering
-\includegraphics[width=0.6\linewidth]{malhaD.pdf}
+\includegraphics[width=0.6\linewidth]{circuito.pdf}
 \caption{D Mesh with an additional voltage source} 
 \label{fig:malhaD}
 \end{figure}
@@ -59,7 +59,7 @@ Fig.~\ref{fig:sim3} shows the plot of the required results.
 \newline
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim3.pdf}
+\includegraphics[width=0.6\linewidth]{../sim/sim4.pdf}
 \caption{Natural Response of $V_{6}$} 
 \label{fig:sim3}
 \end{figure}
@@ -73,28 +73,9 @@ In the fourth section a total response of node 6 was perfomed, using the same pr
 Fig.~\ref{fig:sim4} shows the plot of the required results.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim4.pdf}
+\includegraphics[width=0.6\linewidth]{../sim/sim5.pdf}
 \caption{Total Response of $V_{6}$ and $V_{s}$}
 \label{fig:sim4}
-\end{figure}
-
-
-It is important to note that during the time interval considered the voltage in the capacitor diminuish until its phase differs $\pi$ from the voltage source.
-
-
-\subsection{Frequency Responses}
-
-In this part of the chapter a small signal analysis was realized. The frequency response is simulated on node 6 for the frequency between 0.1Hz to 1MHz. 
-Since $V_{s}$ is the source of the frequency and $V_{6}$ is an output voltage is expected to $V_{s}$ to remain constant and $V_{6}$ to decrease. This can be seen in the following figures~\ref{fig:sim5db} and~\ref{fig:sim5ph}. 
-\begin{figure}[H] \centering
-\includegraphics[width=0.45\linewidth]{../sim/sim5db.pdf}
-\caption{Magnitude response for $V_{6}$ and $V_{s}$ (in dB)} 
-\label{fig:sim5db}
-\end{figure}
-\begin{figure}[H] \centering
-\includegraphics[width=0.45\linewidth]{../sim/sim5ph.pdf}
-\caption{Phase response for $V_{6}$ and $V_{s}$ (in degrees)} 
-\label{fig:sim5ph}
 \end{figure}
 
 
