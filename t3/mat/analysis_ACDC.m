@@ -9,21 +9,21 @@ f = 50;
 Vin = 230;
 
 %attributed values for the secondary circuit
-R1 = 1.5e3;
-R2 = 5.2e3;
+R1 = 8e3;
+R2 = 62.84e3;
 C = 0.0001;
 
 %printing the variables
-printf("Given variables for the primary circuit\n");
-printf("Frequency: %e Hz\n", f);
-printf("Voltage: %e V\n\n", Vin);
-printf("Attributed variables for the secondary circuit\n");
-printf("Resistance 1: %e Ohm\n", R1);
-printf("Resistance 2: %e Ohm\n", R2);
-printf("Capacitor: %e F\n\n", C);
+printf("octave1_TAB\n");
+printf("Frequency = %e Hz\n", f);
+printf("Voltage = %e V\n", Vin);
+printf("Resistance 1 = %e Ohm\n", R1);
+printf("Resistance 2 = %e Ohm\n", R2);
+printf("Capacitor = %e F\n\n", C);
+printf("octave1_END\n\n");
 
 %primary/secondary circuit
-n = 16;
+n = 19.05;
 Vout = Vin/n;
 	
 %envelope detector 
@@ -58,8 +58,10 @@ average_env = mean(vOenv);
 ripple_env = max(vOenv) - min(vOenv);
 vOenv_medium = (ripple_env/2) + min(vOenv);
 
-printf ("RippleEnvelope = %e \n", ripple_env);
-printf ("AverageEnvelope = %e \n\n", average_env);
+printf("octave2_TAB\n");
+printf ("Ripple of the Envelope = %e \n", ripple_env);
+printf ("Averageof the Envelope = %e \n\n", average_env);
+printf("octave2_END\n\n");
 
 %voltage regulator
 n_diode = 20;
@@ -84,22 +86,25 @@ eta = 1;
 
 rd = eta*vt/(Is*exp(VOn/(eta*vt)));
 
-ac_vOreg = (n_diode*rd)/((n_diode*rd)+R2)*(vOenv-average_env);
+ac_vOreg = (n_diode*rd)/((n_diode*rd)+R2)*(vOenv-dc_vOreg);
 
 vOreg = dc_vOreg+ac_vOreg;
 
 average_reg = mean(vOreg);
 ripple_reg = max(vOreg)-min(vOreg);
 
+printf("octave3_TAB\n");
 printf ("RippleRegulator = %e \n", ripple_reg);
 printf ("AverageRegulator= %e \n\n", average_reg);
-	
+printf("octave3_END\n\n");
+
+
 %plots of the values
 	
 %output voltages at rectifier, envelope detector and regulator
 hfc = figure(1);
-title("Output voltage of the rectifier regulator and the envelope")
-plot (t*1000, vS, ";vo_{rectifier}(t);");
+title("Output voltage of the secundary circuit")
+plot (t*1000, vS, ";vo_{sec_circ}(t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
@@ -113,7 +118,7 @@ ylabel ("v_O [Volts]")
 legend('Location','northeast');
 print (hfc, "vout_env.eps", "-depsc");
 
-hfc = figure(2);
+hfc = figure(3);
 title("Output voltage of the regulator")
 plot (t*1000,vOreg, ";vo_{regulator}(t);");
 xlabel ("t[ms]")
@@ -124,7 +129,7 @@ print (hfc, "vout_reg.eps", "-depsc");
 %Deviations (vOenv - 12) 
 hfc = figure(4);
 title("Defletion from the wanted DC voltage")
-plot (t*1000,(vOenv-12), ";vo-12 (t);");
+plot (t*1000,(vOreg-12), ";vo-12 (t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
@@ -134,10 +139,7 @@ print (hfc, "defletion.eps", "-depsc");
 total_cost = ((R1+R2)/1000)+C*1000000+((n_diode+4)*0.1);
 merit=1/(total_cost*(ripple_reg+abs(average_reg-12)+10e-6));
 
+printf("octave4_TAB\n");
 printf ("Total cost of the components = %e \n", total_cost);
 printf ("Merit = %e \n", merit);
-
-
-
-
-
+printf("octave4_END\n\n");
