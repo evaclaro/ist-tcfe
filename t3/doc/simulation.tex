@@ -1,17 +1,10 @@
 \section{Simulation Analysis}
-
 \label{sec:simulation}
+
 \hspace{0,5cm} This section covers the circuit simulation using the Ngspice tool, where the AC/DC converter was simulated for 10 periods using the default diode model.
 \par Firstly, the transformer was replaced by an ideal model using an dependent current source and an dependent voltage source. Then, by trial and error the values of the resistors, capacitor and n parameter were adjusted reaching a good accuracy. The goal was to reach the closest value to 12V in the output voltage.
 \par As asked in the lab assignment, the input voltage of the the secondary circuit, the output voltage of the envelope detector, the output voltage of the voltage regulator and (v(5)-12) were computed and ploted.
 \par Later in this report, we will compare this results with the theoretical ones but for now we will just show them.
-
-
-\begin{figure}[!ht] \centering
-\includegraphics[width=0.6\linewidth]{circuito.pdf}
-\caption{AC/DC converter circuit} 
-\label{fig:circuitoacdc}
-\end{figure}
 
 The Table~\ref{tab:op1} shows the output voltages results for the circuit described in Figure~\ref{fig:circuitoacdc}.
 
@@ -38,35 +31,35 @@ The Table~\ref{tab:op2} show the merit value obtained by the group.
   \label{tab:op2}
 \end{table}
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim41.pdf}
+\begin{figure}[ht!] \centering
+\includegraphics[width=0.5\linewidth]{../sim/sim41.pdf}
 \caption{Output Voltage of the envelope detector v(4)} 
-\label{fig:sim3}
+\label{fig:sim41}
 \end{figure}
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim42.pdf}
+\begin{figure}[ht!] \centering
+\includegraphics[width=0.5\linewidth]{../sim/sim42.pdf}
 \caption{Input Voltage of the secondary circuit (v(2)-v(3))} 
-\label{fig:sim3}
+\label{fig:sim42}
 \end{figure}
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim43.pdf}
+\begin{figure}[ht!] \centering
+\includegraphics[width=0.5\linewidth]{../sim/sim43.pdf}
 \caption{Output Voltage of the voltage regulator v(5)} 
-\label{fig:sim3}
+\label{fig:sim43}
 \end{figure}
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim44.pdf}
+\begin{figure}[ht!] \centering
+\includegraphics[width=0.5\linewidth]{../sim/sim44.pdf}
 \caption{SImulated voltage output error (v(5)-12)} 
-\label{fig:sim3}
+\label{fig:sim44}
 \end{figure}
 
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{../sim/sim5.pdf}
+\begin{figure}[ht!] \centering
+\includegraphics[width=0.5\linewidth]{../sim/sim5.pdf}
 \caption{Total Response of $V_{6}$ and $V_{s}$}
-\label{fig:sim4}
+\label{fig:sim5}
 \end{figure}
 
 

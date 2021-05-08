@@ -19,7 +19,7 @@ printf("Frequency = %e Hz\n", f);
 printf("Voltage = %e V\n", Vin);
 printf("Resistance 1 = %e Ohm\n", R1);
 printf("Resistance 2 = %e Ohm\n", R2);
-printf("Capacitor = %e F\n\n", C);
+printf("Capacitor = %e F\n", C);
 printf("octave1_END\n\n");
 
 %primary/secondary circuit
@@ -60,7 +60,7 @@ vOenv_medium = (ripple_env/2) + min(vOenv);
 
 printf("octave2_TAB\n");
 printf ("Ripple of the Envelope = %e \n", ripple_env);
-printf ("Averageof the Envelope = %e \n\n", average_env);
+printf ("Average of the Envelope = %e \n", average_env);
 printf("octave2_END\n\n");
 
 %voltage regulator
@@ -95,9 +95,15 @@ ripple_reg = max(vOreg)-min(vOreg);
 
 printf("octave3_TAB\n");
 printf ("RippleRegulator = %e \n", ripple_reg);
-printf ("AverageRegulator= %e \n\n", average_reg);
+printf ("AverageRegulator= %e \n", average_reg);
 printf("octave3_END\n\n");
 
+printf("octave5_TAB\n");
+printf ("Ripple of the Envelope = %e \n", ripple_env);
+printf ("Averageof the Envelope = %e \n", average_env);
+printf ("RippleRegulator = %e \n", ripple_reg);
+printf ("AverageRegulator= %e \n", average_reg);
+printf("octave5_END\n\n");
 
 %plots of the values
 	

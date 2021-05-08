@@ -1,70 +1,119 @@
 \section{Side by Side Comparison}
 \label{sec:comparison}
 
-
 After ending both simulation and theoretical analysis processes, the results were presented on their on sections. However, for presenting a prudent interpretation of the result both tables were put side by side.
 
-In the simulation process is important to refer again the creation of an auxiliary voltage that was put between N7 and R7 as shown in Figure~\ref{fig:malhaD}. Consequently, this resulted on the appearance of a node that we designated by N9 that has the same voltage as N7.
+\subsection{Envelope detector}
 
-\begin{table}[ht]
-\parbox{.45\linewidth}{
+The simulated results of the envelope detector output obtained in NGSpice are compared to the theoretical results from Octave as shown below in Figures \ref{fig:sim41} and \ref{fig:vout_env}, respectively.
+
+\begin{figure} [ht]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{../sim/sim41.pdf}
+  \captionof{figure}{Simulated Envelope detector voltage output}
+  \label{fig:sim41}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{vout_env.eps}
+  \captionof{figure}{Theoretical Envelope detector voltage output}
+  \label{fig:vout_env}
+\end{minipage}
+\end{figure}
+
+The theoretical ripple in the envelope detector is considerably smaller than the simulated one, due to the approximations made in the theoretical diode model.
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth]{../sim/sim42.pdf}
+  \captionof{figure}{Simulated voltage output error.}
+  \label{fig:sim_error}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth]{vout_rect.eps}
+  \captionof{figure}{Theoritical voltage output error.}
+  \label{fig:theo_error}
+\end{minipage}
+\end{figure}
+
+\subsection{Output Voltage}
+The simulated results of the voltage output are compared to the theoretical results as shown below in Figures \ref{fig:sim_vout} and \ref{fig:theo_vout}, respectively.
+
+\begin{figure} [h]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{../sim/sim43.pdf}
+  \captionof{figure}{Simulated voltage output.}
+  \label{fig:sim_vout}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{vout_reg.eps}
+  \captionof{figure}{Theoretical voltage output.}
+  \label{fig:theo_vout}
+\end{minipage}
+\end{figure}
+
+Once again, the theoretical ripple is considerably smaller than the simulated one, due to the approximations made in the theoretical diode model.
+
+It is also notable that the output voltage values are always higher than both 12V and the simulation's values, which vary between higher and lower than 12V.  
+
+The voltage output errors ($V_{out}$ - 12) of the simulation and the theoretical analysis are shown above in Figures \ref{fig:sim_error} and \ref{fig:theo_error}, respectively.
+
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth]{../sim/sim44.pdf}
+  \captionof{figure}{Simulated voltage output error.}
+  \label{fig:sim_error}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth]{defletion.eps}
+  \captionof{figure}{Theoritical voltage output error.}
+  \label{fig:theo_error}
+\end{minipage}
+\end{figure}
+
+\pagebreak The output voltage error is always positive and higher than the simulation's, which varies between positive and negative.
+Comparing the Voltage ripple and VDC of the simulated and theoretical analysis in tables \ref{tab:sim} and \ref{tab:tab1}, respectively:
+
+\begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../sim/op1_tab}
   \end{tabular}
-  \caption{Simulation nodal voltage results. All variables are expressed in Volt or Ampere. (Ngspice)}} 
-\parbox{.45\linewidth}{
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../mat/tabela1_tab}
-  \end{tabular}
-  \caption{Theoretical nodal voltage results. All variables are expressed in Volt.(Octave)}}
- 
+  \caption{Simulated results. mean(v(4)) is the average outuput voltage and vecmax(v(4))-vecmin(v(4)) is the maximum value of ripple. The last value is the merit of the circuit.}
+  
+  \label{tab:sim}
 \end{table}
 
-It shows that simulated operating point results from NGSpice and the nodal method results from Octave for the circuit that is being studied are the same.
-
-However, was also calculated the relative errors made in order to understand the accuracy of the results. 
-
-Related to that calculations, it was noticed that in an experimental procedure, the calculation of relative errors is made by comparing experimental values and theorical values, meaning that the decimal places used in the theoretical value to be considered will be in accordance with the experimentally obtained places.
-
-Considering that, in our case, the experimental values are obtained through NGSice, we must use theoretical values with the same number of decimal places returned by the simulation for calculating the errors, as it has a number of decimal places lower than that of the octave. By doing this calculating, all error values absolute and relative are equal to zero. 
-
-Therefore, we can see that the order of magnitude of the errors will be residual.
-
-\pagebreak Related to Point 2, it was also required the analysis side by side of the results as shown on Tables below. 
-
-\begin{table}[ht]
-\parbox{.45\linewidth}{
+\begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/op2_tab}
- 
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/octave5_tab}
   \end{tabular}
-  \caption{Simulation nodal voltage results. All variables are expressed in Volt or Ampere. (Ngspice)}} 
-\parbox{.45\linewidth}{
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../mat/tabela2_tab}
-    
-  \end{tabular}
-  \caption{Theoretical nodal voltage results. All variables are expressed in Volt.(Octave)}}
-\label{tab:final2} 
+  \caption{Theoretical values. $V_{DC}$ is the average outuput voltage.}
+  \label{tab:tab1}
 \end{table}
 
-The conclusions obtained were the same that on the first side by side comparison with errors that can be considered zero.
 
-Although, differences in the order of $10^{-15}$ (or lower), are very likely connected to the way the computer programs deal with mathematical operations and calculations (seen that $10^{-15}$ is approximately the precision of a double's mantissa). It's important to notice that the format of the data presented in the Ngspice tables are automatically chosen but the ones from Octave were used with a bigger precision.
+The merit value is 2.671900e-02.
 
-Therefore, we can see that the order of magnitude of the errors will always be residual.
+
+
 
 
 
