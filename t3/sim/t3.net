@@ -90,6 +90,18 @@ echo "op2_END"
 hardcopy sim4.ps {v(2)-v(3)} {v(4)} {v(5)} {v(5)-12}
 echo sim4_FIG
 
+hardcopy sim41.ps {v(4)}
+echo sim41_FIG
+
+hardcopy sim42.ps {v(2)-v(3)}
+echo sim42_FIG
+
+hardcopy sim43.ps {v(5)} 
+echo sim43_FIG
+
+hardcopy sim44.ps {v(5)-12}
+echo sim44_FIG
+
 *Plot (v_O – 12) (output AC component + DC deviation)
 hardcopy sim5.ps {v(4)-12} {v(5)-12} 
 echo sim5_FIG
