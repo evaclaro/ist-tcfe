@@ -9,8 +9,8 @@ f = 50;
 Vin = 230;
 
 %attributed values for the secondary circuit
-R1 = 8e3;
-R2 = 62.84e3;
+R1 = 1.5e3;
+R2 = 5.2e3;
 C = 0.0001;
 
 %printing the variables
@@ -23,7 +23,7 @@ printf("Resistance 2: %e Ohm\n", R2);
 printf("Capacitor: %e F\n\n", C);
 
 %primary/secondary circuit
-n = 11;
+n = 16;
 Vout = Vin/n;
 	
 %envelope detector 
