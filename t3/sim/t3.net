@@ -1,7 +1,7 @@
 * NGSPICE LAB 3 GROUP 13
 
 .options savecurrents
-.param n =1/16															
+.param n =1/16											
 
 *Indepedent Voltage Source Vs
 Vs 1 0 0 sin(0 230 50 0 0 90) 									  
@@ -18,13 +18,13 @@ D2 GND 2 mydiode
 D3 3 4 mydiode
 D4 GND 3 mydiode
 
-R1 4 GND 1.5k
+R1 4 GND 8k
 
 C1 4 GND 0.0001
 
 *Voltage Regulator											
 
-R2 4 5 5.2k
+R2 4 5 25k
 D5 5 6 mydiode
 D6 6 7 mydiode
 D7 7 8 mydiode

@@ -10,20 +10,20 @@ Vin = 230;
 
 %attributed values for the secondary circuit
 R1 = 8e3;
-R2 = 62.84e3;
+R2 = 25e3;
 C = 0.0001;
 
 %printing the variables
 printf("octave1_TAB\n");
 printf("Frequency = %e Hz\n", f);
 printf("Voltage = %e V\n", Vin);
-printf("Resistance 1 = %e Ohm\n", R1);
-printf("Resistance 2 = %e Ohm\n", R2);
+printf("Resistor 1 = %e Ohm\n", R1);
+printf("Resistor 2 = %e Ohm\n", R2);
 printf("Capacitor = %e F\n", C);
 printf("octave1_END\n\n");
 
 %primary/secondary circuit
-n = 19.05;
+n = 16;
 Vout = Vin/n;
 	
 %envelope detector 
@@ -80,7 +80,7 @@ endif
 	
   
 %ac component regulator
-vt = 0.026;
+vt = 0.025;
 Is = 1e-14;
 eta = 1;
 
