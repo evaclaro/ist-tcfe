@@ -16,7 +16,7 @@ As we were free to choose the circuit, these are the values that we decided to u
   \label{tab:mat1}
 \end{table}
 
-By using a transformer with a proportion of 1:17.5, we were able to change the voltage from a value as high as 230V is in the primary circuit to a value which is much closer to the aim (12V) in the secondary circuit, with the voltage being shown in Figure~\ref{fig:mat2}. However, we also needed two essencial components in order to change the AC source to a DC voltage.
+By using a transformer with a proportion of 1:16, we were able to change the voltage from a value as high as 230V is in the primary circuit to a value which is much closer to the aim (12V) in the secondary circuit, with the voltage being shown in Figure~\ref{fig:mat2}. However, we also needed two essencial components in order to change the AC source to a DC voltage.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../mat/vout_rect.eps}
@@ -26,7 +26,7 @@ By using a transformer with a proportion of 1:17.5, we were able to change the v
 
 The first thing that the circuit does is transforming the voltage coming from the transformer ($vout$) to its absolute value ($vOhr$). This happens due to the 45 degree 4 diode circuit which is a full wave rectifier. (Note: the diodes are considered to be ideal for the theoretical calculations).
 
-Then, the voltage enters in the envelope detector, where the voltage passing the capacitor starts to have behavior closer to a DC voltage. The result can be seen in the Figure \ref{fig:mat3}, where we can see that the amplitude clearly decreased. We calculated the times when the diodes were ON and OFF. The equation \ref{eq:1.1} gives us the expression that we needed to compute the values of $tOFF$.
+Then, the voltage enters in the envelope detector, where the voltage passing the capacitor starts to have behavior closer to a DC voltage. The result can be seen in the Figure 3, where we can see that the amplitude clearly decreased. We calculated the times when the diodes were ON and OFF. The equation \ref{eq:1.1} gives us the expression that we needed to compute the values of $tOFF$.
 
 \begin{equation}
 t_(OFF) = 1/w * atan(1/(w*R1*C))

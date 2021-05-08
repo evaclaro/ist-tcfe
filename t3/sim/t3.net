@@ -83,13 +83,10 @@ echo "op1_END"
 
 *COSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 echo "op2_TAB"
-print 1/(109.1*(maximum(v(5))-minimum(v(5)))+abs(mean(v(5)-12))+10e-6) 
+print 1/(135.4*(maximum(v(5))-minimum(v(5)))+abs(mean(v(5)-12))+10e-6) 
 echo "op2_END"
 
 *Plot the voltages at the output of the Envelope Detector and Voltage Regulator circuits
-hardcopy sim4.ps {v(2)-v(3)} {v(4)} {v(5)} {v(5)-12}
-echo sim4_FIG
-
 hardcopy sim41.ps {v(4)}
 echo sim41_FIG
 
