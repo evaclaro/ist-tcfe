@@ -54,11 +54,12 @@ for i=1:length(t)
 	 endif 
 endfor
 	
-average = mean(vOenv);
+average_env = mean(vOenv);
 ripple_env = max(vOenv) - min(vOenv);
-average_env = ripple_env/2 + min(vOenv);
+vOenv_medium = (ripple_env/2) + min(vOenv);
 
-figure 1
+printf ("RippleEnvelope = %e \n", ripple_env);
+printf ("AverageEnvelope = %e \n\n", average_env);
 
 %voltage regulator
 n_diode = 20;
@@ -69,10 +70,10 @@ dc_vOreg = 0;
 ac_vOreg = zeros(1, length(t));
 	
 %dc component regulator
-if average_env >= VOn*n_diode
+if vOenv_medium >= VOn*n_diode
   dc_vOreg = VOn*n_diode;
 else
-  dc_vOreg = average_env;
+  dc_vOreg = vOenv_medium;
 endif
 	
   
@@ -86,20 +87,42 @@ rd = eta*vt/(Is*exp(VOn/(eta*vt)));
 ac_vOreg = (n_diode*rd)/((n_diode*rd)+R2)*(vOenv-average_env);
 
 vOreg = dc_vOreg+ac_vOreg;
+
+average_reg = mean(vOreg);
+ripple_reg = max(vOreg)-min(vOreg);
+
+printf ("RippleRegulator = %e \n", ripple_reg);
+printf ("AverageRegulator= %e \n\n", average_reg);
 	
 %plots of the values
 	
 %output voltages at rectifier, envelope detector and regulator
 hfc = figure(1);
-title("Output voltage of the regulator and the envelope (v_O(t))")
-plot (t*1000, vS, ";vo_{rectifier}(t);", t*1000,vOenv, ";vo_{envelope}(t);", t*1000,vOreg, ";vo_{regulator}(t);");
+title("Output voltage of the rectifier regulator and the envelope")
+plot (t*1000, vS, ";vo_{rectifier}(t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
-print (hfc, "vout_reg_env.eps", "-depsc");
+print (hfc, "vout_rect.eps", "-depsc");
+
+hfc = figure(2);
+title("Output voltage of the envelope")
+plot (t*1000,vOenv, ";vo_{envelope}(t);");
+xlabel ("t[ms]")
+ylabel ("v_O [Volts]")
+legend('Location','northeast');
+print (hfc, "vout_env.eps", "-depsc");
+
+hfc = figure(2);
+title("Output voltage of the regulator")
+plot (t*1000,vOreg, ";vo_{regulator}(t);");
+xlabel ("t[ms]")
+ylabel ("v_O [Volts]")
+legend('Location','northeast');
+print (hfc, "vout_reg.eps", "-depsc");
 	
 %Deviations (vOenv - 12) 
-hfc = figure(2);
+hfc = figure(4);
 title("Defletion from the wanted DC voltage")
 plot (t*1000,(vOenv-12), ";vo-12 (t);");
 xlabel ("t[ms]")
@@ -107,17 +130,12 @@ ylabel ("v_O [Volts]")
 legend('Location','northeast');
 print (hfc, "defletion.eps", "-depsc");
 	
-average_reg = mean(vOreg);
-ripple_reg = max(vOreg)-min(vOreg);
-
-printf ("RippleRegulator = %e \n", ripple_reg);
-printf ("AverageRegulator= %e \n\n", average_reg);
-
+%Merit
 total_cost = ((R1+R2)/1000)+C*1000000+((n_diode+4)*0.1);
 merit=1/(total_cost*(ripple_reg+abs(average_reg-12)+10e-6));
 
 printf ("Total cost of the components = %e \n", total_cost);
-printf ("Merit= %e \n", merit);
+printf ("Merit = %e \n", merit);
 
 
 
