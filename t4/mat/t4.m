@@ -12,7 +12,19 @@ VCC=12
 RS=100
 C1 =1.8e-06
 C2 =78.7e-06
+Cout = 200e-6
 vi = 0.01;
+
+printf("valores_intro_TAB\n");
+printf("Cin = %e \n", C1);
+printf("CE = %e \n", C2);
+printf("Cout = %e \n", Cout);
+printf("R1 = %e \n", RB1);
+printf("R2 = %e \n", RB2);
+printf("RC = %e \n", RC1);
+printf("RE = %e \n", RE1);
+printf("Rout = %e \n", RE1);
+printf("valores_intro_END\n\n");
 
 i = complex(0,1);
 f = logspace(1,8, 100);

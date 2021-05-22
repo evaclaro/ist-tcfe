@@ -1,22 +1,107 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-\hspace{0,5cm} In this section, the output voltage, voltage ripple and envelope detector output of the circuit shown in Figure~\ref{fig:circuito} will be analysed theoretically.
-
-As we were free to choose the circuit, these are the values that we decided to use for the resistors and the capacitor, as well as the given values of the voltage and frequency of the primary circuit in the transformer.
+\hspace{0,5cm} In this section, the  circuit shown in Figure~\ref{fig:circuito} will be analysed theoretically.
+The constants used for the resistors and capacitors can be seen in table \ref{tab:mat1}.
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V/Ohm/F]} \\ \hline
-    \input{../mat/ponto1_tab}
+    {\bf Name} & {\bf Value [Ohm/F]} \\ \hline
+    \input{../mat/valores_intro_tab}
   \end{tabular}
-  \caption{Given and choosen variables of the circuit}
+  \caption{Value of the resistors and capacitors}
   \label{tab:mat1}
 \end{table}
 
-By using a transformer with a proportion of 1:16, we were able to change the voltage from a value as high as 230V is in the primary circuit to a value which is much closer to the aim (12V) in the secondary circuit, with the voltage being shown in Figure~\ref{fig:mat2}. However, we also needed two essencial components in order to change the AC source to a DC voltage.
+In order to fully understand the analysis that will be made, it is necessary to bear in mind that there are two stages in this circuit: the gain stage and the output stage. 
+
+The first one, which corresponds to the part that is at the left of the $V_{CC}$, has the goal of not degradating or distorting the input signal through the circuit, by keeping the input voltage really high, also being the responsible for the amplification of the signal, due to the elevated gain associated. This part of the circuit is made of a NPN BJT, resistors and capacitors. In most of the times, we can't use this stage due to the high output impedance associated to it, being necessary the output stage.
+
+The second one, which corresponds to the part that is at the right of the $V_{CC}$, presents a low output impedance, especially caused due to the PNP BJT used, that has a lower $\beta_F$. It also has resistors and a capacitor. We finally make the needed BJT Amplifier when merging the two parts into one circuit; however, we need to be extremely careful when combining both stages, since it is necessary to ensure that both impedances are compatible. This is why the input impedance of the output stage needs to be much bigger than the output impedance of the gain stage, in order to make sure no signal is lost.
+
+In this section, we will do an operating point analysis and then an incremental analysis using the values found in the first analysis. We do so in order to compute the values of the input and output impedances in the two stages and the gains associated as well.
+
+\subsection{Gain Stage}
+
+For the gain stage, we start by using the KVL and the KCL in order to arrive to the following equation:
+
+\begin{equation}
+Z_{I1} = R_B||r_{\pi1}
+\label{eq:1.1}
+\end{equation}
+where $Z_{I1}$ is the input impedance of this stage and $R_B = R_1 || R_2$
+We aproximate $R_E$ to zero due to the presence of $C_E$ that is theoratically assumed to be a short-circuit, as well as all capacitors for high frequecies (and behave like open circuits for the low ones). Because it is load-independent, this impedance has the same value of the total input impedance of the circuit.
+The output impedance is given by 
+
+\begin{equation}
+Z_{O1} = r_O||R_C
+\label{eq:1.2}
+\end{equation}
+
+For the incremental response, we "transform" this part of the circuit into a circuit similar to the one presented in Lecture 17 on slide 12. Styding the circuit, we are able to get the following equations:
+
+\begin{equation}
+v_{O1} = -g_m \times (r_O||R_C) \times v_\pi
+\label{eq:1.3}
+\end{equation}
+
+\begin{equation}
+v_\pi = \frac{R_B||r_{\pi 1}}{R_B||r_{\pi 1}+R_S} \times v_S
+\label{eq:1.4}
+\end{equation}
+
+This way, we are able to get
+
+\begin{equation}
+A_{V1} = \frac{v_{O1}}{v_S} = -g_m \times (r_O||R_C) \times \frac{R_B||r_{\pi 1}}{R_B||r_{\pi 1}+R_S}
+\label{eq:1.5}
+\end{equation}
+
+\subsection{Output Stage}
+Just like what we did for the previous stage, by using the KVL and the KCL, we can get the following expressions for the impedances in the OP analysis
+
+\begin{equation}
+Z_{I2} = \frac{(g_{m2}+g_{\pi 2}+g_{O2}+g_{E2})}{g_{\pi 2}(g_{\pi 2}+g_{O2}+g_{E2})}
+\label{eq:1.6}
+\end{equation}
+
+\begin{equation}
+Z_{O2} = \frac{1}{(g_{m2}+g_{\pi 2}+g_{O2}+g_{E2})}
+\label{eq:1.7}
+\end{equation}
+
+For the incremental analysis, we also transform the circuit, turning it into the one presented in Lecture 17 on slide 15. Using the KCL, we get the following expression
+
+\begin{equation}
+(\frac{1}{R_E}+\frac{1}{r_O})v_O+\frac{v_O-v_I}{r_\pi}-g_mv_\pi = 0
+\label{eq:1.8}
+\end{equation}
+
+Knowing that $v_\pi = v_I - v_O$, we can get
+
+\begin{equation}
+A_{V2} = \frac{v_{O2}}{v_{I2}} = \frac{g_\pi+g_m2}{g_{\pi 2}+g_{z2}+g_{O2}+g_{m2}}
+\label{eq:1.9}
+\end{equation}
+
+\subsection{Total value}
+Using the computed value of $i_O$, we calculate the total impedance $Z_OT$
+
+\begin{equation}
+Z_{OT} = \frac{v_O}{i_O} = \frac{1}{g_{O2}+g_{m2}}\frac{r_{\pi 2}}{r_{\pi 2} + Z_{O1}}+g_{E2}+\frac{1}{r_{\pi 2} + Z_{O1}}
+\label{eq:1.10}
+\end{equation}
+
+The total gain is given by
+
+\begin{equation}
+A_V = A_{V1} \times A_{V2}
+\label{eq:1.11}
+\end{equation}
+
+We can now see that, since $Z_{O1}<<Z_{I2}$, there is no signal degradation or loss between the two stages in the figure below.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../mat/theo.eps}
@@ -24,32 +109,7 @@ By using a transformer with a proportion of 1:16, we were able to change the vol
 \label{fig:mat2}
 \end{figure}
 
-The first thing that the circuit does is transforming the voltage coming from the transformer ($vout$) to its absolute value ($vOhr$). This happens due to the 45 degree 4 diode circuit which is a full wave rectifier. (Note: the diodes are considered to be ideal for the theoretical calculations).
-
-Then, the voltage enters in the envelope detector, where the voltage passing the capacitor starts to have behavior closer to a DC voltage. The result can be seen in the Figure 3, where we can see that the amplitude clearly decreased. We calculated the times when the diodes were ON and OFF. The equation \ref{eq:1.1} gives us the expression that we needed to compute the values of $tOFF$.
-
-\begin{equation}
-t_(OFF) = 1/w * atan(1/(w*R1*C))
-\label{eq:1.1}
-\end{equation}
-
-While $t<tOFF$
-
-\begin{equation}
-vOenv (t) = vOhr (t)
-\label{eq:1.2}
-\end{equation}
-
-And for $t>tOFF$
-
-\begin{equation}
-vOenv (t) = abs(vout*cos(w*tOFF)*exp(-(t-tOFF)/(R*C))
-\label{eq:1.3}
-\end{equation}
-
-With vOenv being the value of the voltage in the envelope detector.
-
-The voltage ripple (the difference between the maximum and minimum value of the voltage) and the average value for the envelope detector are given in the following table.
+The value of the lower cut-off frequency was calculated using the Octave. The meaningful results that we need to compare with simulation are all presented in the tables below
 
 \begin{table}[H]
   \centering
@@ -62,43 +122,6 @@ The voltage ripple (the difference between the maximum and minimum value of the 
   \label{tab:mat3}
 \end{table}
 
-
-
-For the last segment of the circuit, the voltage regulator, we have 20 diodes in series that make a almost perfect DC, by reducing the majority of the noise produced. For the computation of the values, we decided to divide the DC component ($dcvOreg$) from the AC one ($acvOreg$).
-For the DC component, we analysed the voltage of the 20 diodes and, if it was superior to the average value of the vOenv, then
-
-\begin{equation}
-dcvOreg = VOn*ndiode
-\label{eq:1.4}
-\end{equation}
-
-If not
-
-\begin{equation}
-dcvOreg = vOenvmedium
-\label{eq:1.5}
-\end{equation}
-
-This happens in order to understand if the vOenv is a voltage with a bigger value than the maximum value the diodes can handle.
-For the AC component, we start by calculating the value of $r_D$, which is the resistance value of each diode
-
-\begin{equation}
-r_D = eta*v_t/(I_s*exp(VOn/(eta*v_t)))
-\label{eq:1.6}
-\end{equation}
-
-With the value of $r_D$, we now are able to calculate the value of the AC component.
-
-\begin{equation}
-ac_vOreg = (ndiode*r_D)/((ndiode*r_D)+R2)*(vOenv-dc_vOreg)
-\label{eq:1.7}
-\end{equation}
-
-To calculate the final value of the voltage leaving the regulator (vOreg), we simply add the AC and DC component, which gives us a value extremely close to 12V and with a small amplitude, as it can be seen in the Figure \ref{fig:mat5} (final value) and \ref{fig:mat6} (difference to 12V).
-
-
-
-The voltage ripple (final amplitude) and the average value (DC value) for the voltage are given in the following table.
 
 \begin{table}[H]
   \centering
