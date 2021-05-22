@@ -40,6 +40,8 @@ RL out 0 8
 
 print all
 
+op
+
 echo "******"
 echo "NPN_TAB"
 let V_CE=v(coll)-v(emit)

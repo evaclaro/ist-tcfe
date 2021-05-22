@@ -1,12 +1,49 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\hspace{0,5cm} This section covers the circuit simulation using the Ngspice tool, where the AC/DC converter was simulated for 10 periods using the default diode model.
-\par Firstly, the transformer was replaced by an ideal model using an dependent current source and an dependent voltage source. Then, by trial and error the values of the resistors, capacitor and n parameter were adjusted reaching a good accuracy. The goal was to reach the closest value to 12V in the output voltage.
-\par As asked in the lab assignment, the input voltage of the the secondary circuit, the output voltage of the envelope detector, the output voltage of the voltage regulator and (v(5)-12) were computed and ploted.
+\hspace{0,5cm} This section covers the audio amplifier circuit simulation using the Ngspice tool.
+\par As asked in the lab assignment, a NPN transistor and a PNP transistor were used in gain stage and output stage respectively. The goal was to calculate the impedances ($Z_I$ and $Z_O$), the cut off frequencies (), the bandwidth (the difference between the cut off frequencies) and the total gain.
+\par It was also confirmed if the BJTs are on the F.A.R. (forward active region) by comparing $V_{CE}$ and $V_{BE}$ for NPN type and $V_{EC}$ and $V_{EB}$ for PNP type.
 \par Later in this report, we will compare this results with the theoretical ones but for now we will just show them.
 
-The Table~\ref{tab:op1} shows the output voltages results for the circuit described in introduction.
+\par The Table~\ref{tab:ng2} and \ref{tab:ng3} shows the BJTs voltages and their F.A.R. confirmation.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/NPN_tab}
+  \end{tabular}
+  \caption{F.A.R. confirmation - BC547A (NPN type)}
+  \label{tab:ng2}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/PNP_tab}
+  \end{tabular}
+  \caption{F.A.R. confirmation - BC557A (PNP type)}
+  \label{tab:ng3}
+\end{table}
+
+\par In the next table it is presented the results asked.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/results_tab}
+  \end{tabular}
+  \caption{Ngspice simulation results}
+  \label{tab:ng4}
+\end{table}
+
+\par The merit obtained by the groups is presentend in the following table.
 
 \begin{table}[!ht]
   \centering
@@ -15,21 +52,10 @@ The Table~\ref{tab:op1} shows the output voltages results for the circuit descri
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../sim/cost_tab}
   \end{tabular}
-  \caption{Outpu voltages results in Volts}
+  \caption{Cost and merit results}
   \label{tab:ngs1}
 \end{table}
 
-The Table~\ref{tab:op2} show the merit value obtained by the group.
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/NPN_tab}
-  \end{tabular}
-  \caption{Merit values}
-  \label{tab:ng2}
-\end{table}
 
 \begin{figure}[ht!] \centering
 \includegraphics[width=0.5\linewidth]{../sim/vo1f.pdf}
@@ -43,33 +69,6 @@ The Table~\ref{tab:op2} show the merit value obtained by the group.
 \label{fig:sim2}
 \end{figure}
 
-The Table~\ref{tab:op2} show the merit value obtained by the group.
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/PNP_tab}
-  \end{tabular}
-  \caption{Merit values}
-  \label{tab:ng3}
-\end{table}
-
-
-The Table~\ref{tab:op2} show the merit value obtained by the group.
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/results_tab}
-  \end{tabular}
-  \caption{Merit values}
-  \label{tab:ng4}
-\end{table}
-
-
-The Table~\ref{tab:op2} show the merit value obtained by the group.
 \begin{table}[!ht]
   \centering
   \begin{tabular}{|l|r|}
