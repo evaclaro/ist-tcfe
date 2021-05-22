@@ -1,0 +1,121 @@
+.options savecurrents
+
+*PHILIPS BJT'S
+.MODEL BC557A PNP(IS=2.059E-14 ISE=2.971f ISC=1.339E-14 XTI=3 BF=227.3 BR=7.69 IKF=0.08719 IKR=0.07646 XTB=1.5 VAF=37.2 VAR=11.42 VJE=0.5912 VJC=0.1 RE=0.688 RC=0.6437 RB=1 RBM=1 IRB=1E-06 CJE=1.4E-11 CJC=1.113E-11 XCJC=0.6288 FC=0.7947 NF=1.003 NR=1.007 NE=1.316 NC=1.15 MJE=0.3572 MJC=0.3414 TF=7.046E-10 TR=1m2 ITF=0.1947 VTF=5.367 XTF=4.217 EG=1.11)
+.MODEL BC547A NPN(IS=1.533E-14 ISE=7.932E-16 ISC=8.305E-14 XTI=3 BF=178.7 BR=8.628 IKF=0.1216 IKR=0.1121 XTB=1.5 VAF=69.7 VAR=44.7 VJE=0.4209 VJC=0.2 RE=0.6395 RC=0.6508 RB=1 RBM=1 IRB=1E-06 CJE=1.61E-11 CJC=4.388p XCJC=0.6193 FC=0.7762 NF=1.002 NR=1.004 NE=1.436 NC=1.207 MJE=0.3071 MJC=0.2793 TF=4.995E-10 TR=1m2 ITF=0.7021 VTF=3.523 XTF=139 EG=1.11)
+
+Vcc vcc 0 12.0
+Vin in 0 0 ac 1.0 sin(0 10m 1k)
+Rin in in2 100
+
+*input coupling capacitor
+Ci in2 base 1.9u
+
+*bias circuit
+R1 vcc base 78k
+R2 base 0 20k
+
+*gain stage
+Q1 coll base emit BC547A
+Rc vcc coll 1k
+Re emit 0 100
+
+*bypass capacitor
+Cb emit 0 1m
+
+*output stage
+Q2 0 coll emit2 BC557A
+Rout emit2 vcc 100
+
+*output coupling capacitor
+Co emit2 out 1u
+
+*load
+RL out 0 8
+
+.op
+.end
+
+.control
+
+print all
+
+echo "******"
+echo "NPN_TAB"
+let V_CE=v(coll)-v(emit)
+echo "V(CE) = $&V_CE"
+let V_BE=v(base)-v(emit)
+echo "V(BE) = $&V_BE"
+if (V_CE>V_BE)
+echo "V(CE)>V(BE) = Yes"
+else
+echo "V(CE)>V(BE) = No"
+endif
+
+echo "NPN_END"
+echo "******"
+echo "PNP_TAB"
+let V_EC=v(emit2)
+echo "V(EC) = $&V_EC"
+let V_EB=v(emit2)-v(coll)
+echo "V(EB) = $&V_EB"
+if (V_EC>V_EB)
+echo "V(EC)>V(EB) = Yes"
+else
+echo "V(EC)>V(EB) = No"
+endif
+echo "PNP_END"
+
+*frequency analysis
+ac dec 10 10 100MEG
+plot vdb(coll)
+plot vp(coll)
+plot vdb(in)
+hardcopy vo1f.ps vdb(coll)
+
+plot vdb(out)
+plot vp(out)
+hardcopy vo2f.ps vdb(coll)
+
+meas AC max MAX vdb(out) from=10 to=100MEG
+let range = max - 3
+
+meas AC lower WHEN vdb(out) = range
+meas AC upper WHEN vdb(out) = range CROSS=LAST
+
+let bandwidth = upper-lower
+let gain = max
+let cut_off_frequency= lower
+let quality = bandwidth*gain/cut_off_frequency
+
+
+*input impedance in ohm
+echo "Zin_TAB"
+let Zr_in= Re(v(in2)[40]/i(Vin)[40])
+let Zim_in= Im(v(in2)[40]/i(Vin)[40])
+echo "Zin = $&Zr_in + $&Zim_in j"
+echo "Zin_END"
+
+
+echo "results_TAB"
+echo "V_Gain=$&gain"
+echo "Bandwidth=$&bandwidth"
+echo "CO_Freq= $&cut_off_frequency"
+echo "results_END"
+
+*total_r = (Rin+R1+R2+Rc+Re+Rout+RL)/1000
+*total_c = (Ci+Cb+Cout)*1000000
+*total_t = 2*0.1
+
+let cost = 123.208
+let merit = quality/cost
+
+echo "******"
+echo "cost_TAB"
+echo "Cost = $&cost"
+echo "merit = $&merit"
+echo "cost_END"
+echo "******"
+
+.endc 
+

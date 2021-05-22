@@ -1,0 +1,129 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+\hspace{0,5cm} In this section, the output voltage, voltage ripple and envelope detector output of the circuit shown in Figure~\ref{fig:circuito} will be analysed theoretically.
+
+As we were free to choose the circuit, these are the values that we decided to use for the resistors and the capacitor, as well as the given values of the voltage and frequency of the primary circuit in the transformer.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V/Ohm/F]} \\ \hline
+    \input{../mat/octave1_tab}
+  \end{tabular}
+  \caption{Given and choosen variables of the circuit}
+  \label{tab:mat1}
+\end{table}
+
+By using a transformer with a proportion of 1:16, we were able to change the voltage from a value as high as 230V is in the primary circuit to a value which is much closer to the aim (12V) in the secondary circuit, with the voltage being shown in Figure~\ref{fig:mat2}. However, we also needed two essencial components in order to change the AC source to a DC voltage.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../mat/vout_rect.eps}
+\caption{Output voltage of the secundary circuit}
+\label{fig:mat2}
+\end{figure}
+
+The first thing that the circuit does is transforming the voltage coming from the transformer ($vout$) to its absolute value ($vOhr$). This happens due to the 45 degree 4 diode circuit which is a full wave rectifier. (Note: the diodes are considered to be ideal for the theoretical calculations).
+
+Then, the voltage enters in the envelope detector, where the voltage passing the capacitor starts to have behavior closer to a DC voltage. The result can be seen in the Figure 3, where we can see that the amplitude clearly decreased. We calculated the times when the diodes were ON and OFF. The equation \ref{eq:1.1} gives us the expression that we needed to compute the values of $tOFF$.
+
+\begin{equation}
+t_(OFF) = 1/w * atan(1/(w*R1*C))
+\label{eq:1.1}
+\end{equation}
+
+While $t<tOFF$
+
+\begin{equation}
+vOenv (t) = vOhr (t)
+\label{eq:1.2}
+\end{equation}
+
+And for $t>tOFF$
+
+\begin{equation}
+vOenv (t) = abs(vout*cos(w*tOFF)*exp(-(t-tOFF)/(R*C))
+\label{eq:1.3}
+\end{equation}
+
+With vOenv being the value of the voltage in the envelope detector.
+
+The voltage ripple (the difference between the maximum and minimum value of the voltage) and the average value for the envelope detector are given in the following table.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/octave2_tab}
+  \end{tabular}
+  \caption{Voltage Ripple and Average Voltage for the Envelope Detector}
+  \label{tab:mat3}
+\end{table}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../mat/vout_env.eps}
+\caption{Output voltage of the envelope}
+\label{fig:mat4}
+\end{figure}
+
+For the last segment of the circuit, the voltage regulator, we have 20 diodes in series that make a almost perfect DC, by reducing the majority of the noise produced. For the computation of the values, we decided to divide the DC component ($dcvOreg$) from the AC one ($acvOreg$).
+For the DC component, we analysed the voltage of the 20 diodes and, if it was superior to the average value of the vOenv, then
+
+\begin{equation}
+dcvOreg = VOn*ndiode
+\label{eq:1.4}
+\end{equation}
+
+If not
+
+\begin{equation}
+dcvOreg = vOenvmedium
+\label{eq:1.5}
+\end{equation}
+
+This happens in order to understand if the vOenv is a voltage with a bigger value than the maximum value the diodes can handle.
+For the AC component, we start by calculating the value of $r_D$, which is the resistance value of each diode
+
+\begin{equation}
+r_D = eta*v_t/(I_s*exp(VOn/(eta*v_t)))
+\label{eq:1.6}
+\end{equation}
+
+With the value of $r_D$, we now are able to calculate the value of the AC component.
+
+\begin{equation}
+ac_vOreg = (ndiode*r_D)/((ndiode*r_D)+R2)*(vOenv-dc_vOreg)
+\label{eq:1.7}
+\end{equation}
+
+To calculate the final value of the voltage leaving the regulator (vOreg), we simply add the AC and DC component, which gives us a value extremely close to 12V and with a small amplitude, as it can be seen in the Figure \ref{fig:mat5} (final value) and \ref{fig:mat6} (difference to 12V).
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../mat/vout_reg.eps}
+\caption{Output voltage of the regulator}
+\label{fig:mat5}
+\end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../mat/defletion.eps}
+\caption{Deviation from the wanted DC voltage} 
+\label{fig:mat6}
+\end{figure}
+
+The voltage ripple (final amplitude) and the average value (DC value) for the voltage are given in the following table.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/octave3_tab}
+  \end{tabular}
+  \caption{Voltage Ripple and Average Voltage for the Voltage Regulator}
+  \label{tab:mat7}
+\end{table}
+
+
+
