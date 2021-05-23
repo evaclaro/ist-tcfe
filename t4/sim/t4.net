@@ -49,9 +49,9 @@ op
 echo "******"
 echo "NPN_TAB"
 let VCE=v(coll)-v(emit)
-echo "V(CE) = $&VCE"
+echo "V(CE) = $&VCE V"
 let VBE=v(base)-v(emit)
-echo "V(BE) = $&VBE"
+echo "V(BE) = $&VBE V"
 if (VCE>VBE)
 echo "V(CE) greater than V(BE) = Yes"
 else
@@ -62,9 +62,9 @@ echo "NPN_END"
 echo "******"
 echo "PNP_TAB"
 let VEC=v(emit2)
-echo "V(EC) = $&VEC"
+echo "V(EC) = $&VEC V"
 let VEB=v(emit2)-v(coll)
-echo "V(EB) = $&VEB"
+echo "V(EB) = $&VEB V"
 if (VEC>VEB)
 echo "V(EC) greater than V(EB) = Yes"
 else
@@ -91,8 +91,9 @@ meas AC upper WHEN vdb(out) = range CROSS=LAST
 
 let bandwidth = upper-lower
 let gain = max
-let cutofffrequency= lower
-let quality = bandwidth*gain/cutofffrequency
+let cutofffrequencyl= lower
+let cutofffrequencyu= upper
+let quality = bandwidth*gain/cutofffrequencyl
 
 let
 
@@ -100,13 +101,14 @@ let
 echo "Zin_TAB"
 let Zrin= Re(v(in2)[40]/i(Vin)[40])
 let Zimin= Im(v(in2)[40]/i(Vin)[40])
-echo "Zin = $&Zrin + $&Zimin j"
+echo "Zin = $&Zrin + $&Zimin j Ohm"
 echo "Zin_END"
 
 echo "results_TAB"
-echo "VGain=$&gain"
-echo "Bandwidth=$&bandwidth"
-echo "COFreq= $&cutofffrequency"
+echo "VGain=$&gain V"
+echo "Bandwidth=$&bandwidth Hz"
+echo "Lower COFreq= $&cutofffrequencyl Hz"
+echo "Upper COFreq= $&cutofffrequencyu Hz"
 echo "results_END"
 
 let cost = 1197.498
@@ -114,7 +116,7 @@ let merit = quality/cost
 
 echo "******"
 echo "cost_TAB"
-echo "Cost = $&cost"
+echo "Cost = $&cost MU"
 echo "merit = $&merit"
 echo "cost_END"
 echo "******"

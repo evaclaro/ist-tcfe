@@ -129,7 +129,7 @@ while  0.05 < ((maximo - AVdb(k))/maximo)
 endwhile
 
 lowerCutoff = (w(k))/(2*pi);
-highCutoff = 10^7;
+highCutoff = 1.65407E+06;
 
 bandwidth = highCutoff - lowerCutoff;
 cost = 1e-3*(RE1 + RC1 + RB1 + RB2 + RE2) + 1e6*(C1 + C2) + 2*0.1;
@@ -138,11 +138,11 @@ AV=abs(AV);
 Merit = (max(AV) * bandwidth)/(cost * lowerCutoff)
 
 printf ("ponto1_TAB\n");
-printf ("IB1 = %e \n", IB1);
-printf ("IC1 = %e \n", IC1);
-printf ("IE1 = %e \n", IE1);
-printf ("cost= %e \n", cost);
-printf ("VO1 = %e \n", VO1);
+printf ("IB1 = %e A\n", IB1);
+printf ("IC1 = %e A\n", IC1);
+printf ("IE1 = %e A\n", IE1);
+printf ("cost= %e MU\n", cost);
+printf ("VO1 = %e V\n", VO1);
 printf ("ponto1_END\n\n");
 
 
@@ -159,6 +159,6 @@ printf ("r_theo_TAB\n");
 printf ("Gain stage- AV1  = %e V\n", max(AV1));
 printf ("Output stage stage -AV2 = %e V \n", max(AV2));
 printf ("Bandwidth= %e Hz \n", bandwidth);
-printf ("Cut Off Frequency= %e Hz \n", lowerCutoff);
+printf ("Lower Cut Off Frequency= %e Hz \n", lowerCutoff);
 printf ("r_theo_END\n\n");
 
