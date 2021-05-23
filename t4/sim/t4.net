@@ -11,11 +11,11 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 Rin in in2 100
 
 *input coupling capacitor
-Ci in2 base 1.9u
+Ci in2 base 450u
 
 *bias circuit
 R1 vcc base 78k
-R2 base 0 20k
+R2 base 0 18k
 
 *gain stage
 Q1 coll base emit BC547A
@@ -23,14 +23,14 @@ Rc vcc coll 1k
 Re emit 0 100
 
 *bypass capacitor
-Cb emit 0 1m
+Cb emit 0 450u
 
 *output stage
 Q2 0 coll emit2 BC557A
 Rout emit2 vcc 100
 
 *output coupling capacitor
-Co emit2 out 1u
+Co emit2 out 200u
 
 *load
 RL out 0 8
@@ -81,7 +81,7 @@ hardcopy vo1f.ps vdb(coll)
 
 plot vdb(out)
 plot vp(out)
-hardcopy vo2f.ps vdb(coll)
+hardcopy vo2f.ps vdb(out)
 
 meas AC max MAX vdb(out) from=10 to=100MEG
 let range = max - 3
@@ -103,18 +103,13 @@ let Zimin= Im(v(in2)[40]/i(Vin)[40])
 echo "Zin = $&Zrin + $&Zimin j"
 echo "Zin_END"
 
-
 echo "results_TAB"
 echo "VGain=$&gain"
 echo "Bandwidth=$&bandwidth"
 echo "COFreq= $&cutofffrequency"
 echo "results_END"
 
-*total_r = (Rin+R1+R2+Rc+Re+Rout+RL)/1000
-*total_c = (Ci+Cb+Cout)*1000000
-*total_t = 2*0.1
-
-let cost = 123.208
+let cost = 1197.498
 let merit = quality/cost
 
 echo "******"

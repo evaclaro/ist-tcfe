@@ -15,9 +15,9 @@ The constants used for the resistors and capacitors can be seen in Table \ref{ta
   \label{tab:mat1}
 \end{table}
 
-In order to fully understand the analysis that will be made, it is necessary to bear in mind that there are two stages in this circuit: the gain stage and the output stage, that are presented in Figures ~\ref{fig:gain} and ~\ref{fig:output}. 
+\par In order to fully understand the analysis that will be made, it is necessary to bear in mind that there are two stages in this circuit: the gain stage and the output stage, that are presented in Figures ~\ref{fig:gain} and ~\ref{fig:output}. 
 
-The first one, which corresponds to the part that is at the left of the $V_{CC}$, has the goal of not degradating or distorting the input signal through the circuit, by keeping the input voltage really high, also being the responsible for the amplification of the signal, due to the elevated gain associated. This part of the circuit is made of a NPN BJT, resistors and capacitors. In most of the times, we can't use this stage due to the high output impedance associated to it, being necessary the output stage.
+\par The first one, which corresponds to the part that is at the left of the $V_{CC}$, has the goal of not degradating or distorting the input signal through the circuit, by keeping the input voltage really high, also being the responsible for the amplification of the signal, due to the elevated gain associated. This part of the circuit is made of a NPN BJT, resistors and capacitors. In most of the times, we can't use this stage due to the high output impedance associated to it, being necessary the output stage.
 
 
 \begin{figure}[H] \centering
@@ -27,7 +27,7 @@ The first one, which corresponds to the part that is at the left of the $V_{CC}$
 \end{figure}
 
 
-The second one, which corresponds to the part that is at the right of the $V_{CC}$, presents a low output impedance, especially caused due to the PNP BJT used, that has a lower $\beta_F$. It also has resistors and a capacitor. We finally make the needed BJT Amplifier when merging the two parts into one circuit; however, we need to be extremely careful when combining both stages, since it is necessary to ensure that both impedances are compatible. This is why the input impedance of the output stage needs to be much bigger than the output impedance of the gain stage, in order to make sure no signal is lost.
+\par The second one, which corresponds to the part that is at the right of the $V_{CC}$, presents a low output impedance, especially caused due to the PNP BJT used, that has a lower $\beta_F$. It also has resistors and a capacitor. We finally make the needed BJT Amplifier when merging the two parts into one circuit; however, we need to be extremely careful when combining both stages, since it is necessary to ensure that both impedances are compatible. This is why the input impedance of the output stage needs to be much bigger than the output impedance of the gain stage, in order to make sure no signal is lost.
 
 \begin{figure}[H] \centering
 \includegraphics[width=1\linewidth]{output.pdf}
@@ -36,7 +36,7 @@ The second one, which corresponds to the part that is at the right of the $V_{CC
 \end{figure}
 
 
-In this circuit, we will do an operating point analysis and then an incremental analysis using the values found in the first analysis. We do so in order to compute the values of the input and output impedances in the two stages and the gains associated as well.
+\par In this circuit, we will do an operating point analysis and then an incremental analysis using the values found in the first analysis. We do so in order to compute the values of the input and output impedances in the two stages and the gains associated as well.
 
 \subsection{Gain Stage}
 
@@ -47,7 +47,7 @@ Z_{I1} = R_B||r_{\pi1}
 \label{eq:1.1}
 \end{equation}
 where $Z_{I1}$ is the input impedance of this stage and $R_B = R_1 || R_2$
-We aproximate $R_E$ to zero due to the presence of $C_E$ that is theoratically assumed to be a short-circuit, as well as all capacitors for high frequecies (and behave like open circuits for the low ones). Because it is load-independent, this impedance has the same value of the total input impedance of the circuit.
+We aproximate $R_E$ to zero due to the presence of $C_E$ that is theoretically assumed to be a short-circuit, as well as all capacitors for high frequecies (and behave like open circuits for the low ones). Because it is load-independent, this impedance has the same value of the total input impedance of the circuit.
 The output impedance is given by 
 
 \begin{equation}
@@ -55,7 +55,7 @@ Z_{O1} = r_O||R_C
 \label{eq:1.2}
 \end{equation}
 
-For the incremental response, we "transform" this part of the circuit into a circuit similar to the one presented in Lecture 17 on slide 12. Styding the circuit, we are able to get the following equations:
+For the incremental response, we "transform" this part of the circuit into a circuit similar to the one presented in Lecture 17 on slide 12. Studying the circuit, we are able to get the following equations:
 
 \begin{equation}
 v_{O1} = -g_m \times (r_O||R_C) \times v_\pi
@@ -102,7 +102,7 @@ A_{V2} = \frac{v_{O2}}{v_{I2}} = \frac{g_\pi+g_m2}{g_{\pi 2}+g_{z2}+g_{O2}+g_{m2
 \end{equation}
 
 \subsection{Total value}
-Using the computed value of $i_O$, we calculate the total impedance $Z_OT$
+Using the computed value of $i_O$, we calculate the total impedance $Z_{OT}$
 
 \begin{equation}
 Z_{OT} = \frac{v_O}{i_O} = \frac{1}{g_{O2}+g_{m2}}\frac{r_{\pi 2}}{r_{\pi 2} + Z_{O1}}+g_{E2}+\frac{1}{r_{\pi 2} + Z_{O1}}
@@ -120,7 +120,7 @@ We can now see that, since $Z_{O1}<<Z_{I2}$, there is no signal degradation or l
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../mat/theo.eps}
-\caption{Output voltage of the secundary circuit}
+\caption{Output voltage of the secondary circuit}
 \label{fig:mat2}
 \end{figure}
 
@@ -133,7 +133,7 @@ The value of the lower cut-off frequency was calculated using the Octave. The me
     {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../mat/r_theo_tab}
   \end{tabular}
-  \caption{Voltage Ripple and Average Voltage for the Envelope Detector}
+  \caption{Theoretical values obtained by Octave}
   \label{tab:mat3}
 \end{table}
 
@@ -145,7 +145,7 @@ The value of the lower cut-off frequency was calculated using the Octave. The me
     {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../mat/Z_tab}
   \end{tabular}
-  \caption{Voltage Ripple and Average Voltage for the Voltage Regulator}
+  \caption{Input and Output impedances}
   \label{tab:mat7}
 \end{table}
 

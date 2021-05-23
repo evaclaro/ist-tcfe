@@ -1,18 +1,18 @@
 %gain stage
 
-VT=25e-3
-BFN=178.7
-VAFN=69.7
-RE1=100
-RC1=1000
-RB1=80000
-RB2=20000
-VBEON=0.7
-VCC=12
-RS=100
-C1 =1.8e-06
-C2 =78.7e-06
-Cout = 200e-6
+VT=25e-3;
+BFN=178.7;
+VAFN=69.7;
+RE1=100;
+RC1=1000;
+RB1=78000;
+RB2=18000;
+VBEON=0.7;
+VCC=12;
+RS=100;
+C1 =450e-06;
+C2 =450e-06;
+Cout = 200e-6;
 vi = 0.01;
 
 printf("valores_intro_TAB\n");
