@@ -3,98 +3,14 @@
 
 After ending both simulation and theoretical analysis processes, the results were presented on their sections. However, for presenting a prudent interpretation of the result both tables were put side by side.
 
-\subsection{Envelope detector}
-
-The simulated results of the envelope detector output obtained in NGSpice are compared to the theoretical results from Octave as shown below in Figures \ref{fig:sim41} and \ref{fig:vout_env}, respectively.
-
-\begin{figure} [ht]
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.9\linewidth]{../sim/sim41.pdf}
-  \captionof{figure}{Simulated Envelope detector voltage output}
-  \label{fig:sim41}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.9\linewidth]{vout_env.eps}
-  \captionof{figure}{Theoretical Envelope detector voltage output}
-  \label{fig:vout_env}
-\end{minipage}
-\end{figure}
-
-The theoretical ripple in the envelope detector is considerably smaller than the simulated one, due to the approximations made in the theoretical diode model.
-
-\begin{figure}
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.8\linewidth]{../sim/sim42.pdf}
-  \captionof{figure}{Simulated voltage output error.}
-  \label{fig:sim_error}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.8\linewidth]{vout_rect.eps}
-  \captionof{figure}{Theoritical voltage output error.}
-  \label{fig:theo_error}
-\end{minipage}
-\end{figure}
-
-\subsection{Output Voltage}
-The figures 13 and 14 show the comparison between simulated and theoretical values for the voltage transformer being evident there is no difference between the two plots.
-The simulated results of the voltage output are compared to the theoretical results as shown below in Figures \ref{fig:sim_vout} and \ref{fig:theo_vout}, respectively.
-
-\begin{figure} [h]
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.9\linewidth]{../sim/sim43.pdf}
-  \captionof{figure}{Simulated voltage output.}
-  \label{fig:sim_vout}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.9\linewidth]{vout_reg.eps}
-  \captionof{figure}{Theoretical voltage output.}
-  \label{fig:theo_vout}
-\end{minipage}
-\end{figure}
-
-Once again, the theoretical ripple is considerably smaller than the simulated one, due to the approximations made in the theoretical diode model.
-
-It is also notable that the theoretical output voltage values are always higher than both 12V and the simulation's values, which are lower than 12V.  
-
-The voltage output errors ($V_{out}$ - 12) of the simulation and the theoretical analysis are shown above in Figures \ref{fig:sim_error} and \ref{fig:theo_error}, respectively.
-
-
-\begin{figure}
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.8\linewidth]{../sim/sim44.pdf}
-  \captionof{figure}{Simulated voltage output error.}
-  \label{fig:sim_error}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.8\linewidth]{defletion.eps}
-  \captionof{figure}{Theoretical voltage output error.}
-  \label{fig:theo_error}
-\end{minipage}
-\end{figure}
-
-\pagebreak The theoretical output voltage error is always positive and higher than the simulation's, which is always negative and bigger in absolute value.
-Comparing the Voltage ripple and VDC of the simulated and theoretical analysis in tables \ref{tab:sim} and \ref{tab:tab1}, respectively:
-
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{../sim/op1_tab}
+    \input{../sim/results_tab}
   \end{tabular}
-  \caption{Simulated results. mean(v(4)) is the average outuput voltage and vecmax(v(4))-vecmin(v(4)) is the maximum value of ripple. The last value is the merit of the circuit.}
+  \caption{Simulated results}
   
   \label{tab:sim}
 \end{table}
@@ -104,9 +20,9 @@ Comparing the Voltage ripple and VDC of the simulated and theoretical analysis i
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{../mat/octave5_tab}
+    \input{../mat/r_theo_tab}
   \end{tabular}
-  \caption{Theoretical values. $V_{DC}$ is the average outuput voltage.}
+  \caption{Theoretical values}
   \label{tab:tab1}
 \end{table}
 

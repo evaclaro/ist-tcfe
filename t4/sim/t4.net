@@ -53,9 +53,9 @@ echo "V(CE) = $&VCE"
 let VBE=v(base)-v(emit)
 echo "V(BE) = $&VBE"
 if (VCE>VBE)
-echo "V(CE)>V(BE) = Yes"
+echo "V(CE) greater than V(BE) = Yes"
 else
-echo "V(CE)>V(BE) = No"
+echo "V(CE) greater than V(BE) = No"
 endif
 
 echo "NPN_END"
@@ -66,9 +66,9 @@ echo "V(EC) = $&VEC"
 let VEB=v(emit2)-v(coll)
 echo "V(EB) = $&VEB"
 if (VEC>VEB)
-echo "V(EC) > V(EB) = Yes"
+echo "V(EC) greater than V(EB) = Yes"
 else
-echo "V(EC) > V(EB) = No"
+echo "V(EC) greater than V(EB) = No"
 endif
 echo "PNP_END"
 
