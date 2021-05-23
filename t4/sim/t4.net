@@ -66,9 +66,9 @@ echo "V(EC) = $&VEC"
 let VEB=v(emit2)-v(coll)
 echo "V(EB) = $&VEB"
 if (VEC>VEB)
-echo "V(EC)>V(EB) = Yes"
+echo "V(EC) > V(EB) = Yes"
 else
-echo "V(EC)>V(EB) = No"
+echo "V(EC) > V(EB) = No"
 endif
 echo "PNP_END"
 

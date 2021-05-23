@@ -2,7 +2,7 @@
 \label{sec:analysis}
 
 \hspace{0,5cm} In this section, the  circuit shown in Figure~\ref{fig:circuito} will be analysed theoretically.
-The constants used for the resistors and capacitors can be seen in table \ref{tab:mat1}.
+The constants used for the resistors and capacitors can be seen in Table \ref{tab:mat1}.
 
 \begin{table}[H]
   \centering
@@ -36,7 +36,7 @@ The second one, which corresponds to the part that is at the right of the $V_{CC
 \end{figure}
 
 
-In this section, we will do an operating point analysis and then an incremental analysis using the values found in the first analysis. We do so in order to compute the values of the input and output impedances in the two stages and the gains associated as well.
+In this circuit, we will do an operating point analysis and then an incremental analysis using the values found in the first analysis. We do so in order to compute the values of the input and output impedances in the two stages and the gains associated as well.
 
 \subsection{Gain Stage}
 
@@ -87,7 +87,7 @@ Z_{O2} = \frac{1}{(g_{m2}+g_{\pi 2}+g_{O2}+g_{E2})}
 \label{eq:1.7}
 \end{equation}
 
-For the incremental analysis, we also transform the circuit, turning it into the one presented in Lecture 17 on slide 15. Using the KCL, we get the following expression
+For the incremental analysis, we also transform the circuit, turning it into the one presented in Lecture 17 on slide 15, that can also be seen in Figure ~\ref{fig:gain}. Using the KCL, we get the following expression
 
 \begin{equation}
 (\frac{1}{R_E}+\frac{1}{r_O})v_O+\frac{v_O-v_I}{r_\pi}-g_mv_\pi = 0
