@@ -15,11 +15,26 @@ The constants used for the resistors and capacitors can be seen in table \ref{ta
   \label{tab:mat1}
 \end{table}
 
-In order to fully understand the analysis that will be made, it is necessary to bear in mind that there are two stages in this circuit: the gain stage and the output stage. 
+In order to fully understand the analysis that will be made, it is necessary to bear in mind that there are two stages in this circuit: the gain stage and the output stage, that are presented in Figures ~\ref{fig:gain} and ~\ref{fig:output}. 
 
 The first one, which corresponds to the part that is at the left of the $V_{CC}$, has the goal of not degradating or distorting the input signal through the circuit, by keeping the input voltage really high, also being the responsible for the amplification of the signal, due to the elevated gain associated. This part of the circuit is made of a NPN BJT, resistors and capacitors. In most of the times, we can't use this stage due to the high output impedance associated to it, being necessary the output stage.
 
+
+\begin{figure}[H] \centering
+\includegraphics[width=1\linewidth]{gain.pdf}
+\caption{Gain Stage Circuit}
+\label{fig:gain}
+\end{figure}
+
+
 The second one, which corresponds to the part that is at the right of the $V_{CC}$, presents a low output impedance, especially caused due to the PNP BJT used, that has a lower $\beta_F$. It also has resistors and a capacitor. We finally make the needed BJT Amplifier when merging the two parts into one circuit; however, we need to be extremely careful when combining both stages, since it is necessary to ensure that both impedances are compatible. This is why the input impedance of the output stage needs to be much bigger than the output impedance of the gain stage, in order to make sure no signal is lost.
+
+\begin{figure}[H] \centering
+\includegraphics[width=1\linewidth]{output.pdf}
+\caption{Output Stage Circuit}
+\label{fig:output}
+\end{figure}
+
 
 In this section, we will do an operating point analysis and then an incremental analysis using the values found in the first analysis. We do so in order to compute the values of the input and output impedances in the two stages and the gains associated as well.
 
