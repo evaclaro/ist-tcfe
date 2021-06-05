@@ -97,12 +97,12 @@ echo ".csparam index=$&index" > index.txt
 *input impedance
 let RE_zi= RE(-v(in)[index]/i(Vin)[index])
 let IM_zi= IM(-v(in)[index]/i(Vin)[index])
-*let Zin= v(in)[20]/vin#branch[20]/(-1)
-*let Re_Zi = Re(Zin)
-*let Im_Zi = Im(Zin)
+let Zin= v(in)[20]/vin#branch[20]/(-1)
+let Re_Zi = Re(Zin)
+let Im_Zi = Im(Zin)
 echo "input_impedance_TAB"
 echo "Input Impedance = $&RE_zi + $&IM_zi j"
-*echo "Input Impedance = $&Re_Zi + $&Im_Zi j"
+echo "Input Impedance = $&Re_Zi + $&Im_Zi j"
 echo "input_impedance_END"
 
 *output impedance
