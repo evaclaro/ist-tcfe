@@ -58,7 +58,7 @@ X1 non_inv inv vcc vee amp_out uA741
 
 R1 non_inv 0 1000
 R2 amp_out out 1000
-R3 amp_out inv 10000
+R3 amp_out inv 100000
 R4 inv 0 1000
 
 *Auxiliar voltage to measure output impedance
