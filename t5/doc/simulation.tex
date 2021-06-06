@@ -2,9 +2,7 @@
 \label{sec:simulation}
 
 \hspace{0,5cm} This section covers the audio amplifier circuit simulation using the Ngspice tool.
-\par As asked in the lab assignment, a NPN transistor and a PNP transistor were used in gain stage and output stage respectively. The goal was to calculate the impedances ($Z_I$ and $Z_O$), the cut off frequencies (upper and lower), the bandwidth (the difference between the cut-off frequencies) and the total gain. Also, the goal was to optimize these values.
-\par It was also confirmed if the BJTs are on the FAR (forward active region) by comparing $V_{CE}$ and $V_{BE}$ for NPN type and $V_{EC}$ and $V_{EB}$ for PNP type. The merit is also calculated in this section.
-\par Later in this report, we will compare this results with the theoretical ones but for now we will just show them.
+
 
 \par The Table~\ref{tab:ng2} and \ref{tab:ng3} shows the BJTs voltages and their FAR confirmation.
 
@@ -13,9 +11,9 @@
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value } \\ \hline
-    \input{../sim/NPN_tab}
+    \input{../sim/deviation_tab}
   \end{tabular}
-  \caption{FAR confirmation - BC547A (NPN type)}
+  \caption{TITULO}
   \label{tab:ng2}
 \end{table}
 
@@ -24,24 +22,74 @@
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value } \\ \hline
-    \input{../sim/PNP_tab}
+    \input{../sim/gain_frequency_tab}
   \end{tabular}
-  \caption{FAR confirmation - BC557A (PNP type)}
+  \caption{TITULO}
   \label{tab:ng3}
 \end{table}
 
-\par After the OP analysis where the currents branches and nodal voltages were computed, in the next table it is presented the values asked: voltage gain, lower and upper cut-off frequency and the bandwidth. It was used the .meas function.
 
 \begin{table}[!ht]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value } \\ \hline
-    \input{../sim/results_tab}
+    \input{../sim/input_impedance_tab}
   \end{tabular}
-  \caption{Ngspice simulation results}
+  \caption{TITULO}
   \label{tab:ng4}
 \end{table}
+
+
+
+
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../sim/voutph.pdf}
+\caption{TITULO}
+\label{fig:ng1}
+\end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../sim/voutdb.pdf}
+\caption{TITULO}
+\label{fig:ng6}
+\end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../sim/vnon_inv.pdf}
+\caption{TITULO}
+\label{fig:ng7}
+\end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.5\linewidth]{../sim/vamp_out.pdf}
+\caption{TITULO}
+\label{fig:ng8}
+\end{figure}
+
+
+
+\par The merit obtained by the group is presentend in the following table. It can be consider that the results were good.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/merit_tab}
+  \end{tabular}
+  \caption{TITULO}
+  \label{tab:ng5}
+\end{table}
+
+TEXTO DO T4
+
+\par As asked in the lab assignment, a NPN transistor and a PNP transistor were used in gain stage and output stage respectively. The goal was to calculate the impedances ($Z_I$ and $Z_O$), the cut off frequencies (upper and lower), the bandwidth (the difference between the cut-off frequencies) and the total gain. Also, the goal was to optimize these values.
+\par It was also confirmed if the BJTs are on the FAR (forward active region) by comparing $V_{CE}$ and $V_{BE}$ for NPN type and $V_{EC}$ and $V_{EB}$ for PNP type. The merit is also calculated in this section.
+\par Later in this report, we will compare this results with the theoretical ones but for now we will just show them.
+
+\par After the OP analysis where the currents branches and nodal voltages were computed, in the next table it is presented the values asked: voltage gain, lower and upper cut-off frequency and the bandwidth. It was used the .meas function.
 
 \par EFFECT OF THE COUPLING'S CAPACITOR: To fully analyse this circuit it is fundamental to understand the Coupling's Capacitor behaviour. The main effect of the Coupling's Capacitor is to block the DC signals of the Audio In source. When the capacitance is increased, the cut off frequency is anticipated leading to a larger bandwidth. This results in the capacitor blocking some lower frequencies influencing directly in the bandwidth.
 
@@ -51,46 +99,5 @@
 
 \par In the following graphics it can be seen how the effect of the previous components and how the the input voltage and output voltage varies with the frequency.
 
-\begin{figure} [ht]
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.9\linewidth]{../sim/vo1f.pdf}
-  \captionof{figure}{Input Voltage}
-  \label{fig:sim41}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.9\linewidth]{../sim/vo2f.pdf}
-  \captionof{figure}{Output Voltage}
-  \label{fig:vout_env}
-\end{minipage}
-\end{figure}
 
 \par To guarantee a high compatability between Audio In and the speakers is important to simulate the input and output impedances. To have a similar value for voltage in node In2 and Vin it is necessary a high resistance value. Regarding the output impedance, it must be the lowest possible, in order to have the maximum output voltage.
-
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../sim/Zin_tab}
-  \end{tabular}
-  \caption{Impedance values}
-  \label{tab:ng5}
-\end{table}
-
-\par The merit obtained by the group is presentend in the following table. It can be consider that the results were good.
-
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value } \\ \hline
-    \input{../sim/cost_tab}
-  \end{tabular}
-  \caption{Cost and merit results}
-  \label{tab:ngs1}
-\end{table}
-
-
