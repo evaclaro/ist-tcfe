@@ -61,9 +61,6 @@ R2 amp_out out 1000
 R3 amp_out inv 100000
 R4 inv 0 1000
 
-*Auxiliar voltage to measure output impedance
-*Vx out 0 0 ac 1.0 sin(0 10m 1k)
-
 .op
 .end
 

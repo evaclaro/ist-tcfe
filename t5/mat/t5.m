@@ -5,24 +5,31 @@ pkg load symbolic;
 format long;
 
 %attributed values
-R1 = 1e3;
-R2 = 100e3;
-R3 = 100e3;
-R4 = 1e3;
-C1 = 220e-9;
-C2 = 1e-6;
+R1 = 1e3
+R2 = 1e3
+R3 = 100e3
+R4 = 1e3
+C1 = 220e-9
+C2 = 110e-9
 
-f = logspace (1,8,70);
-w = 2*pi*f;
-s = j*w;
+vin = 10
+f = logspace (1,8,70)
+w = 2*pi*f
 
-Ts = (R1*C1*s)/(1 + R1*C1*s)*(1 + R3/R4)*1/(1+R2*C2*s);
+Ts = (R1*C1*2*pi*f*j)./(1+R1*C1*2*pi*f*j).*(1+R3/R4).*(1./(1+R2*C2*2*pi*f*j));
+
+%central frequency
+wL = 1/(R1*C1) 
+wH = 1/(R2*C2)
+wO = sqrt(wL*wH) 
+sO = j*wO
+centralf = wO/(2*pi)
 
 %high-pass filter
-Zc1 = 1/(j*wO*C1); 
-v_plus = vin*Zc1/(Zc1 + R1); 
+Zc1 = 1/(j*wO*C1)
+v_plus = vin*Zc1/(Zc1 + R1)
 
-Zin = R1 + Zc1; 
+Zin = R1 + Zc1
 
 %OpAmp
 v_minus = v_plus;
@@ -34,14 +41,7 @@ vout = vO*Zc2/(R2 + Zc2);
 
 Zout = R2*Zc2/(R2 * Zc2); 
 
-%central frequency
-wL = 1/(R1*C1); 
-wH = 1/(R2*C2); 
-wO = sqrt(wL*wH); 
-sO = j*wO;
-centralf = w0/(2*pi);
-
-gaindb = 20*log10(abs((R1*C1*sO)/(1 + R1*C1*sO)*(1+R3/R4)*1/(1 + R2*C2*sO)));
+gaindb = 20.*log10(abs((R1*C1*sO)./(1 + R1*C1*sO).*(1+R3/R4).*1./(1 + R2*C2*sO)));
 
 %printing tables
 printf("octave1_TAB\n");
@@ -71,8 +71,13 @@ title("Gain obtained");
 print(figure1, "octave1.eps", "-depsc");
 
 figure1 = figure();
-semilogx(f,180*arg(Tf)/pi);
+semilogx(f,180*arg(Ts)/pi);
 xlabel("Frequency [Hz]");
 ylabel("Phase [Degrees]");
 title("Phase frequency response");
 print(figure1, "octave2.eps", "-depsc");
+
+
+
+
+
