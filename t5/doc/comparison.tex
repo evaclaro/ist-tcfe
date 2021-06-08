@@ -3,7 +3,13 @@
 
 After ending both simulation and theoretical analysis processes, the results were presented on their sections. However, for presenting a detailed interpretation of the result both graphics and tables were put side by side.
 
-\begin{figure} [ht]
+\par Regarding the Gain Graphics we can see that their shape is very similar, the circuit has the same response in both NGSpice and Octave what can lead us to conclude that the results in this analysis are positive.
+
+\par When comparing the Phase Frequency response graphics we can see that they differ, this can be explained one more time by the model used by NGSpice, which is really complex.
+
+\par Comparing also the output and input impedances, we only what to note that there are small diferences, which means that the aproximation made by octave corresponds with a very high sucess rate to the far more complex model used by NGSpice. We were already expecting differences but being this small is also a positive outcome of this laboratory.
+
+\begin{figure} [H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -19,10 +25,9 @@ After ending both simulation and theoretical analysis processes, the results wer
 \end{minipage}
 \end{figure}
 
-\par Regarding the Gain Graphics we can see that their shape is very similar, the circuit has the same response in both NGSpice and Octave what can lead us to conclude that the results in this analysis are positive.
 
-\par Presenting now the Phase Frequency response by NGSpice and Octave.
-\begin{figure} [ht]
+
+\begin{figure} [H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -38,33 +43,52 @@ After ending both simulation and theoretical analysis processes, the results wer
 \end{minipage}
 \end{figure}
 
-When comparing the phase frequency response graphics we can see that they differ, this can be explained ...
 
-%
-%\begin{table}[h]
-%  \centering
- % \begin{tabular}{|l|r|}
-  %  \hline    
-   % {\bf Name} & {\bf Value } \\ \hline
-%    \input{../sim/results_tab}
- % \end{tabular}
- % \caption{Simulated results}
-  
-  %\label{tab:sim}
-%\end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/octave2_tab}
+  \end{tabular}
+  \caption{Computed theoretical values}
+  \label{tab:mat2}
+\end{table}
 
-%\begin{table}[h]
-%  \centering
-%  \begin{tabular}{|l|r|}
-%    \hline    
-%    {\bf Name} & {\bf Value } \\ \hline
-%    \input{../mat/r_theo_tab}
-%  \end{tabular}
-%  \caption{Theoretical values}
-%  \label{tab:tab1}
-%\end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value } \\ \hline
+    \input{../sim/gain_frequency_tab}
+  \end{tabular}
+  \caption{Gain and Central Frequency}
+  \label{tab:ng3}
+\end{table}
 
-Comparing also the output and input impedances, we only what to note that there are small diferences, which means that the aproximation made by octave corresponds with a very high sucess rate to the far more complex model used by NGSpice. We were already expecting differences but being this small is also a positive outcome of this laboratory.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value } \\ \hline
+    \input{../sim/input_impedance_tab}
+  \end{tabular}
+  \caption{Input Impedance}
+  \label{tab:ng4}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value } \\ \hline
+    \input{../sim/output_impedance_tab}
+  \end{tabular}
+  \caption{Output Impedance}
+  \label{tab:ng4}
+\end{table}
+
 
 
 
