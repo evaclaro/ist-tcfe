@@ -1,30 +1,64 @@
 \section{Side by Side Comparison}
 \label{sec:comparison}
 
-After ending both simulation and theoretical analysis processes, the results were presented on their sections. However, for presenting a prudent interpretation of the result both tables were put side by side.
+After ending both simulation and theoretical analysis processes, the results were presented on their sections. However, for presenting a detailed interpretation of the result both graphics were put side by side.
 
-\begin{table}[h]
+\begin{figure} [ht]
+\centering
+\begin{minipage}{.5\textwidth}
   \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value } \\ \hline
-    \input{../sim/results_tab}
-  \end{tabular}
-  \caption{Simulated results}
+  \includegraphics[width=0.9\linewidth]{../sim/voutdb.pdf}
+  \captionof{figure}{Gain Frequency by NGSpice}
+  \label{fig:sim41}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{octave1.eps}
+  \captionof{figure}{Gain Frequency by Octave}
+  \label{fig:vout_env}
+\end{minipage}
+\end{figure}
+
+
+
+\begin{figure} [ht]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{../sim/voutph.pdf}
+  \captionof{figure}{Phase Frequency by NGSpice}
+  \label{fig:sim41}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{octave2.eps}
+  \captionof{figure}{Phase Frequency by Octave}
+  \label{fig:vout_env}
+\end{minipage}
+\end{figure}
+%
+%\begin{table}[h]
+%  \centering
+ % \begin{tabular}{|l|r|}
+  %  \hline    
+   % {\bf Name} & {\bf Value } \\ \hline
+%    \input{../sim/results_tab}
+ % \end{tabular}
+ % \caption{Simulated results}
   
-  \label{tab:sim}
-\end{table}
+  %\label{tab:sim}
+%\end{table}
 
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value } \\ \hline
-    \input{../mat/r_theo_tab}
-  \end{tabular}
-  \caption{Theoretical values}
-  \label{tab:tab1}
-\end{table}
+%\begin{table}[h]
+%  \centering
+%  \begin{tabular}{|l|r|}
+%    \hline    
+%    {\bf Name} & {\bf Value } \\ \hline
+%    \input{../mat/r_theo_tab}
+%  \end{tabular}
+%  \caption{Theoretical values}
+%  \label{tab:tab1}
+%\end{table}
 
 
 
