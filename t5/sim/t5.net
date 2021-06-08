@@ -78,8 +78,8 @@ meas AC central_frequency MAX_AT vdb(out) from=10 to=100MEG
 let gain= vdb(out)[2000]
 
 echo "gain_frequency_TAB"
-echo "Output Voltage Gain = $&maximo"
-echo "Central Frequency = $&central_frequency"
+echo "Output Voltage Gain = $&maximo dB"
+echo "Central Frequency = $&central_frequency Hz"
 echo "gain_frequency_END"
 
 *input impedance in kohm
@@ -99,14 +99,14 @@ let Avdeviation = abs(100-10^(gain/20))
 let Freqdeviation = abs(1000-central_frequency)
 echo "deviation_TAB"
 echo "Gain Deviation = $&Avdeviation"
-echo "Frequency Deviation = $&Freqdeviation"
+echo "Frequency Deviation = $&Freqdeviation Hz"
 echo "deviation_END"
 
 *merit
 let cost = 13426.8
 let merit = 1/(cost*(Avdeviation + Freqdeviation + 0.000001))
 echo "merit_TAB"
-echo "Cost = $&cost"
+echo "Cost = $&cost MU"
 echo "Merit = $&merit"
 echo "merit_END"
 
