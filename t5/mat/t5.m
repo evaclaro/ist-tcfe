@@ -48,7 +48,7 @@ printf("octave1_END\n\n");
 printf("octave2_TAB\n");
 printf("Input Impedance = %e\n", Zin);
 printf("Output Impedance = %e\n", Zout);
-printf("Central Frequency = %e\n", centralf);
+printf("Central Frequency = %e Hz\n", centralf);
 printf("Obtained gain (in decibels) = %e dB\n", gaindb);
 printf("octave2_END\n\n");
 
