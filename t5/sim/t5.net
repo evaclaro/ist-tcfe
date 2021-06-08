@@ -102,13 +102,6 @@ echo "input_impedance_TAB"
 echo "Input Impedance = $&RealZi + $&ImagZi j"
 echo "input_impedance_END"
 
-*output impedance
-*let RE_zo= RE(-v(out)[index]/i(Vx)[index])
-*let IM_zo= IM(-v(out)[index]/i(Vx)[index])
-*echo "output_impedance_TAB"
-*echo "Output Imp = $&RE_zo + $&IM_zo j"
-*echo "output_impedance_END"
-
 *voltage and frequency deviations for merit
 let Avdeviation = abs(100-10^(maximo/20))
 let Freqdeviation = abs(1000-central_frequency)
@@ -118,9 +111,10 @@ echo "Freq deviation = $&Freqdeviation"
 echo "deviation_END"
 
 *merit
-let cust = 1
-let merit = 1/(cust*(Avdeviation + Freqdeviation + 0.000001))
+let cost = 13426.8
+let merit = 1/(cost*(Avdeviation + Freqdeviation + 0.000001))
 echo "merit_TAB"
+echo "cost = $&cost"
 echo "merit = $&merit"
 echo "merit_END"
 
