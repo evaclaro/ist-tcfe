@@ -9,8 +9,6 @@ t5: ngspice5.log
 	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 	ps2pdf voutdb.ps voutdb.pdf
 	ps2pdf voutph.ps voutph.pdf
-	ps2pdf vamp_out.ps vamp_out.pdf
-	ps2pdf vnon_inv.ps vnon_inv.pdf
 	
 	
 ngspice5.log: ../sim/t5.net

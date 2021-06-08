@@ -69,53 +69,45 @@ R4 inv 0 1000
 print all
 
 *Frequency analysis
-ac dec 10 10 100MEG
+ac dec 1000 10 100MEG
 hardcopy voutdb.ps vdb(out)
 hardcopy voutph.ps 180/PI*phase(v(out))
-hardcopy vnon_inv.ps 180/PI*phase(v(non_inv))
-hardcopy vamp_out.ps 180/PI*phase(v(amp_out))
 
 meas AC maximo MAX vdb(out) from=10 to=100MEG
 meas AC central_frequency MAX_AT vdb(out) from=10 to=100MEG
+let gain= vdb(out)[2000]
 
 echo "gain_frequency_TAB"
-echo "AV = $&maximo"
+echo "Output Voltage Gain = $&maximo"
 echo "Central Frequency = $&central_frequency"
 echo "gain_frequency_END"
-
-*let index= nint(log(central_frequency/1000)/log(1.0023055678241)+2000)
-*print index
-*echo ".csparam index=$&index" > index.txt
 
 *input impedance in kohm
 *print v(in)[40]/R1[i]/1000
 *need a different setup to measure output impedance
 
 *input impedance
-*let RE_zi= RE(-v(in)[index]/i(Vin)[index])
-*let IM_zi= IM(-v(in)[index]/i(Vin)[index])
 let Zin= v(in)[20]/vin#branch[20]/(-1)
 let RealZi = Re(Zin)
 let ImagZi = Im(Zin)
 echo "input_impedance_TAB"
-*echo "Input Impedance = $&RE_zi + $&IM_zi j"
 echo "Input Impedance = $&RealZi + $&ImagZi j"
 echo "input_impedance_END"
 
 *voltage and frequency deviations for merit
-let Avdeviation = abs(100-10^(maximo/20))
+let Avdeviation = abs(100-10^(gain/20))
 let Freqdeviation = abs(1000-central_frequency)
 echo "deviation_TAB"
-echo "Av deviation = $&Avdeviation"
-echo "Freq deviation = $&Freqdeviation"
+echo "Gain Deviation = $&Avdeviation"
+echo "Frequency Deviation = $&Freqdeviation"
 echo "deviation_END"
 
 *merit
 let cost = 13426.8
 let merit = 1/(cost*(Avdeviation + Freqdeviation + 0.000001))
 echo "merit_TAB"
-echo "cost = $&cost"
-echo "merit = $&merit"
+echo "Cost = $&cost"
+echo "Merit = $&merit"
 echo "merit_END"
 
 quit
