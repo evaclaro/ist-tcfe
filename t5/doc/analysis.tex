@@ -9,40 +9,117 @@ The constants used for the resistors and capacitors can be seen bellow.
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [Ohm/F]} \\ \hline
+    {\bf Name} & {\bf Value} \\ \hline
     \input{../mat/octave1_tab}
   \end{tabular}
-  \caption{TITULO}
+  \caption{Chosen values for the resistors and capacitors}
   \label{tab:mat1}
 \end{table}
 
 
 \par In order to fully understand the analysis that will be made, it is necessary to bear in mind that there are three stages in this circuit: the High Pass Stage, the Amplication Stage and the Low Pass Stage. 
-\par The first one lets the high frequency sinals pass, and cuts the ones with lower frequencies.It is made with $C_1$ and $R_1$. 
-\par The second stage is used for amplify the sinal, being its main component the Operational Amplifier. It's easy to understand that it's on this stage that the gain is maximum. The components of this stage are the OP-AMP, $R_3$ and $R_4$. 
-\par The third stage, works essentially for cutting high frequency sinals and letting the lower ones pass. It is made by the remaining components, $R_2$ and $C_2$. 
-\par All in all, we build a Band Pass Filter by cuting the higher and the lower frequencies and letting pass a specific band of sinals.
+\par The first one lets the high frequency sinals pass, and cuts the ones with lower frequencies.It is made with $C_1$ and $R_1$. From this stage, we get the following equations:
+
+\begin{equation}
+w_{Low} = \frac{1}{R1 \times C1}
+\label{eq:1.1}
+\end{equation}
+
+\begin{equation}
+Gain_{High Pass Stage} = \frac{R1 \times C1 \times s}{1 + R1 \times C1 \times s}
+\label{eq:1.2}
+\end{equation}
+
+where $s = 2 \times \pi \times f \times j$
+
+\par The second stage is used for amplify the sinal, being its main component the Operational Amplifier. It's easy to understand that it's on this stage that the gain is maximum. The components of this stage are the OP-AMP, $R_3$ and $R_4$. From here, we can get:
+
+\begin{equation}
+Gain_{OpAmp} = 1 + \frac{R3}{R4}
+\label{eq:1.3}
+\end{equation}
+
+\par The third stage, works essentially for cutting high frequency sinals and letting the lower ones pass. It is made by the remaining components, $R_2$ and $C_2$. At last, we get from here:
+
+\begin{equation}
+w_{High} = \frac{1}{R2 \times C2}
+\label{eq:1.4}
+\end{equation}
+
+\begin{equation}
+Gain_{Low Pass Stage} = \frac{1}{1 + R2 \times C2 \times s}
+\label{eq:1.5}
+\end{equation}
+
+\par All in all, we build a Band Pass Filter by cutting the higher and the lower frequencies and letting pass a specific band of sinals.
+
+In order to obtain the gain for the specific central frequency, we need to replace $s$ with $s_{Central}$. We obtain this value by computing firstly the central frequency, which is a geometrical average of the low and high cut frequencies we calculated before.
+
+\begin{equation}
+w_{Central} = \sqrt{w_{Low} \times w_{High}}
+\label{eq:1.6}
+\end{equation}
+
+\begin{equation}
+s_{Central} = w_{Central} \times j
+\label{eq:1.7}
+\end{equation}
+
+The total gain of this circuit is given by:
+
+\begin{equation}
+T(s) = Gain_{High Pass Stage} \times Gain_{OpAmp} \times Gain_{Low Pass Stage}
+\label{eq:1.8}
+\end{equation}
+
+where we replace the variable $s$ with the computed $s_{Central}$
+
+At last, we calculated the input and output impedances, bearing in mind that we are using an ideal OpAmp. Knowing $w_{Central}$, we are able to calculate the impedances of the capacitors.
+
+\begin{equation}
+Z_{C1} = \frac{1}{j \times w_{Central} \times C1}
+\label{eq:1.9}
+\end{equation}
+
+\begin{equation}
+Z_{C2} = \frac{1}{j \times w_{Central} \times C2}
+\label{eq:1.10}
+\end{equation}
+
+Now, we are able to compute the input and output impedances.
+
+\begin{equation}
+Z_{input} = R1 + Z_{C1}
+\label{eq:1.11}
+\end{equation}
+
+\begin{equation}
+Z_{output} = Z_{C2}||R2 = \frac{R2 \times Z_{C2}}{R2 + Z_{C2}}
+\label{eq:1.12}
+\end{equation}
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [Ohm/F]} \\ \hline
+    {\bf Name} & {\bf Value} \\ \hline
     \input{../mat/octave2_tab}
   \end{tabular}
-  \caption{TITULO}
+  \caption{Computed theoretical values}
   \label{tab:mat2}
 \end{table}
 
+We also obtained the plot of the theoretical gain response in figure \ref{fig:mat3} and of the phase response in figure \ref{fig:mat4} from the frequency of 10Hz until 100MHz.
+
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../mat/octave1.eps}
-\caption{TITULO}
+\caption{Gain Response Vo(f)/Vi(f)}
 \label{fig:mat3}
 \end{figure}
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.5\linewidth]{../mat/octave2.eps}
-\caption{TITULO}
+\caption{Phase Response Vo(f)/Vi(f)}
 \label{fig:mat4}
 \end{figure}
 

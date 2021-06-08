@@ -12,34 +12,26 @@ R4 = 1e3
 C1 = 220e-9
 C2 = 110e-9
 
-vin = 10
-f = logspace (1,8,70)
-w = 2*pi*f
+f = logspace (1,8,70);
+w = 2*pi*f;
+s = w*j;
 
-Ts = (R1*C1*2*pi*f*j)./(1+R1*C1*2*pi*f*j).*(1+R3/R4).*(1./(1+R2*C2*2*pi*f*j));
+Ts = (R1*C1*s)./(1+R1*C1*s).*(1+R3/R4).*(1./(1+R2*C2*s));
 
 %central frequency
-wL = 1/(R1*C1) 
-wH = 1/(R2*C2)
-wO = sqrt(wL*wH) 
-sO = j*wO
-centralf = wO/(2*pi)
-
-%high-pass filter
-Zc1 = 1/(j*wO*C1)
-v_plus = vin*Zc1/(Zc1 + R1)
-
-Zin = R1 + Zc1
-
-%OpAmp
-v_minus = v_plus;
-vO = v_minus*(R4 + R3)/R3;
+wL = 1/(R1*C1); 
+wH = 1/(R2*C2);
+wO = sqrt(wL*wH); 
+sO = j*wO;
+centralf = wO/(2*pi);
 
 %low-pass filter
-Zc2 = 1/(j*wO*C2); 
-vout = vO*Zc2/(R2 + Zc2); 
+Zc1 = 1/(j*wO*C1);
+Zin = R1 + Zc1;
 
-Zout = R2*Zc2/(R2 * Zc2); 
+%high-pass filter
+Zc2 = 1/(j*wO*C2); 
+Zout = R2*Zc2/(R2 + Zc2); 
 
 gaindb = 20.*log10(abs((R1*C1*sO)./(1 + R1*C1*sO).*(1+R3/R4).*1./(1 + R2*C2*sO)));
 
@@ -56,11 +48,9 @@ printf("octave1_END\n\n");
 printf("octave2_TAB\n");
 printf("Input Impedance = %e\n", Zin);
 printf("Output Impedance = %e\n", Zout);
-printf("octave2_END\n\n");
-
-printf("octave3_TAB\n");
+printf("Central Frequency = %e\n", centralf);
 printf("Obtained gain (in decibels) = %e dB\n", gaindb);
-printf("octave3_END\n\n");
+printf("octave2_END\n\n");
 
 %printing figures
 figure1 = figure();
@@ -76,8 +66,3 @@ xlabel("Frequency [Hz]");
 ylabel("Phase [Degrees]");
 title("Phase frequency response");
 print(figure1, "octave2.eps", "-depsc");
-
-
-
-
-
